@@ -1,0 +1,7 @@
+interface:
+  display_name: "Industry Chain Atlas"
+  short_description: "Build evidence-backed industry chain maps"
+  default_prompt: "Use $industry-chain-atlas to build a Markdown consulting-report atlas for HBM, including product decomposition, bottlenecks, leaders, customers, competitors, and evidence."
+
+policy:
+  allow_implicit_invocation: true
