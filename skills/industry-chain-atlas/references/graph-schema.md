@@ -20,6 +20,8 @@ Do not rely on one giant all-detail diagram. For report-style outputs, use one h
 3. commercial control-point map
 4. bottleneck heat map if needed
 
+Node and edge tables are production data. They should support diagram construction and QA, not appear as raw tables in the final rendered HTML.
+
 ## Panoramic Atlas Rules
 
 Use this when the user wants an infographic-like report.
@@ -60,6 +62,8 @@ Every important node should be representable as:
 | Inputs | Required upstream inputs |
 | Outputs | What it delivers downstream |
 | Global leaders | Leading global companies |
+| Logo / ticker hints | Visible logo, wordmark, and ticker hints for listed companies; logo or text badge for private companies |
+| Listed status | Listed, private, state-owned, subsidiary, or unknown |
 | Regional leaders | Important regional players or challengers |
 | Downstream customers | Customers or next-chain buyers |
 | Competitors | Direct competitors or substitutes |
@@ -195,11 +199,11 @@ Avoid placing long evidence text inside the diagram. Use source IDs in node labe
 
 ## Commercial Control-Point Cards
 
-Use 6-8 cards after the main atlas. Each card should cover one control point:
+Use 4-8 compact cards after the main atlas. Each card should cover one control point and should be rendered as a visual card, not a visible table:
 
-| Control point | What it controls | Global leaders | Customers / beneficiaries | Bottleneck | Evidence hooks |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
+| Control point | 控制 | 龙头 | 瓶颈 | Evidence hooks |
+|---|---|---|---|---|
+|  |  |  |  |  |
 
 ## Node Atlas Table
 
@@ -210,6 +214,8 @@ Use this table for each major layer.
 |  |  |  |  |  |  |  |  |  |
 
 ## Bottleneck Heat Table
+
+Render this as a vertical top-to-bottom ranking with long, narrow rows and a heat chip on the right. Avoid wide card grids.
 
 | Rank | Node | Bottleneck thesis | Why it could bind | Global leaders | Evidence strength | What would break the thesis |
 |---|---|---|---|---|---|---|
@@ -225,3 +231,5 @@ To help downstream HTML rendering:
 - for infographic-like outputs, put the panoramic atlas before dense tables
 - use short source IDs such as `E01`, `E02`, `E03`
 - keep source URLs or document names in the evidence ledger, not inside Mermaid labels
+- keep non-render node and edge tables out of final HTML unless transformed into visual graph elements
+- show listed companies as logo/wordmark plus ticker where practical; use consistent badges for private companies

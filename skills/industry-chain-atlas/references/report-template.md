@@ -26,11 +26,15 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Final HTML must look like a long-form consulting infographic, not a Markdown document.
 - Visible text should be in [target language].
 - Do not render this Render Brief, Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs.
+- Do not render Node Render Data or Edge Render Data as raw tables. Use them only to create visual nodes, arrows, badges, and hidden QA metadata.
 - Do not place generic explanatory prose under the title unless explicitly specified.
 - Use clear arrows between nodes. The reader should be able to follow the chain without reading tables.
 - Prefer a hand-laid SVG for the main flowchart when relationships are complex.
 - Use HTML/CSS cards only for supporting blocks such as commercial control points, bottleneck heat table, and process ribbon.
 - Show peer companies as parallel nodes feeding into a shared downstream node; never draw them as a sequential chain unless that is literally true.
+- Render bottleneck heatmaps as a vertical top-to-bottom ranking with long, narrow rows, not as a wide grid of cards.
+- Render commercial control points as compact two-column cards. Each card should mainly show `控制`, `龙头`, and `瓶颈`.
+- Show listed companies with logo or wordmark plus ticker where practical. Show unlisted companies with logo/wordmark or a consistent text badge.
 
 ## Visible Block 1: Main Title
 
@@ -83,9 +87,9 @@ flowchart TB
 
 ## Non-Render Data: Node Render Data
 
-| Node ID | Layer | Node label | Node type | Global leaders | Customers / next node | Bottleneck status | Evidence hooks |
-|---|---|---|---|---|---|---|---|
-| [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Companies] | [Nodes/customers] | [Tier 1/Tier 2/Watchlist/None] | [E01] |
+| Node ID | Layer | Node label | Node type | Global leaders | Logo / ticker hints | Customers / next node | Bottleneck status | Evidence hooks |
+|---|---|---|---|---|---|---|---|---|
+| [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Companies] | [Logo or wordmark + ticker where practical] | [Nodes/customers] | [Tier 1/Tier 2/Watchlist/None] | [E01] |
 
 ## Non-Render Data: Edge Render Data
 
@@ -95,11 +99,15 @@ flowchart TB
 
 ## Visible Block 3: Commercial Control-Point Cards
 
-| Control point | What it controls | Global leaders | Customers / beneficiaries | Bottleneck mechanism | Evidence hooks |
+Render these as compact cards, not as a visible table. Use two columns on desktop and one column on mobile.
+
+| Control point | 控制 | 龙头 | 瓶颈 | Optional customer / validation note | Evidence hooks |
 |---|---|---|---|---|---|
-| [Control point] | [Power or profit pool] | [Companies] | [Customers] | [Constraint] | [E01, E02] |
+| [Control point] | [Power or profit pool in one phrase] | [Logo/ticker badges or company names] | [Constraint in one phrase] | [Optional short note] | [E01, E02] |
 
 ## Visible Block 4: Bottleneck Heat Table
+
+Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not render it as a wide card grid.
 
 | Rank | Node | Bottleneck thesis | Constraint type | Global leaders | Evidence strength | Breaker |
 |---|---|---|---|---|---|---|
@@ -128,9 +136,10 @@ flowchart LR
 ## Renderer Notes
 
 - Treat the Mermaid graph as the source of the visual layout.
-- Use node render data for card contents and styling.
-- Use edge render data for line styles and labels.
+- Use node render data for visual node/card contents and styling; do not display the node table itself.
+- Use edge render data for line styles and labels; do not display the edge table itself.
 - Use evidence hooks only for hidden QA or optional hover citations; do not show the full Evidence Ledger.
 - Keep detailed prose out of the rendered graph.
 - If converting Mermaid to custom SVG, preserve the node order, edge direction, dashed commercial relationships, and bottleneck styling.
+- Company visuals should prefer logo/wordmark plus ticker for listed companies and logo/wordmark or text badge for private companies.
 ````

@@ -90,11 +90,13 @@ Visible in final HTML:
 Do not render directly:
 
 - Render Brief instructions
-- Node Render Data and Edge Render Data tables unless converting them into visual cards/lines
+- Node Render Data and Edge Render Data tables unless converting them into visual nodes, arrows, cards, or hidden QA metadata
 - Evidence Ledger
 - Renderer Notes
 - source URLs
 - long reasoning paragraphs
+
+The final HTML should never look like it rendered the production Markdown line by line. Treat production tables as data behind the graphic.
 
 For Chinese outputs, visible text should be Chinese. Keep English only for unavoidable company names, product names, and standards such as HBM4, CoWoS, TSV, GPU, ASIC.
 
@@ -120,7 +122,42 @@ Use this order when the user mainly wants a chart:
 
 ## Commercial Control-Point Map
 
-Use 6-8 cards when the business logic matters.
+Use 4-8 cards when the business logic matters. Keep them compact.
+
+Default layout:
+
+- two-column card grid on desktop, single column on narrow screens
+- each card has a short title and severity dot
+- each card uses only concise rows: `控制`, `龙头`, `瓶颈`
+- optional fourth row: `客户` or `验证`, only when needed
+- no paragraph body inside cards
+- no source URLs inside cards
+
+The card should read like a control-point label, not a mini essay.
+
+## Bottleneck Heat Map Layout
+
+Use a vertical ranking by default.
+
+Preferred structure:
+
+- one top-to-bottom list or slim table
+- long horizontal rows with compact height
+- columns: `排名`, `节点`, `瓶颈判断`, `约束类型`, `热力`
+- heat chips at the right edge
+- row backgrounds can alternate subtly, but avoid wide card grids
+
+This block should resemble an investment-research bottleneck ranking: dense, directional, and easy to scan from rank 1 downward.
+
+## Company Logo And Ticker Rule
+
+For visible company labels:
+
+- listed companies: show logo or wordmark plus ticker whenever practical, such as `NVIDIA (NVDA)`, `TSMC (TSM)`, `Samsung Electronics (005930.KS)`, `SK hynix (000660.KS)`, `Micron (MU)`, `AMD (AMD)`, `Broadcom (AVGO)`, `ASML (ASML)`
+- private or unlisted companies: show logo/wordmark or a consistent text badge
+- if the renderer cannot fetch a logo, use a styled fallback badge with the company name and ticker if available
+- do not invent logos, listing status, or tickers
+- keep company badges smaller than product/process node labels so the graph remains product-led
 
 ## Panoramic Atlas Layout
 
@@ -162,12 +199,9 @@ Keep separate or secondary:
 Each card should include:
 
 - control point name
-- why it matters
-- global leaders
-- customers or beneficiaries
-- bottleneck mechanism
-- key metric or evidence hook
-- thesis breaker
+- `控制`: the thing being controlled in one short phrase
+- `龙头`: 1-4 leader badges, ideally logo plus ticker for listed companies
+- `瓶颈`: the constraint mechanism in one short phrase
 
 Recommended card types:
 
@@ -199,6 +233,7 @@ Use this order for full reports:
 - Keep diagram labels short.
 - Put company names in node subtitles or cards, not in every edge.
 - Put evidence IDs in tables, not the diagram.
+- Keep raw node/edge tables out of the rendered HTML. The renderer should consume them as data, not display them.
 - Do not claim direct supply unless confirmed or clearly labeled as reported/inferred.
 - If the main chart becomes too dense, split by system: product formation, commercial control points, and end demand.
 - Do not render the Evidence Ledger in final HTML unless the user explicitly asks for visible citations.

@@ -54,8 +54,12 @@ Use this order unless the user explicitly requests a narrower task:
 - For visual report requests, do not make company-only maps. Product/component/process nodes must be the primary structure; companies are labels, role cards, or relationship overlays.
 - The Markdown artifact is an instruction/specification for the next renderer, not the visible report body.
 - Clearly mark visible sections and non-render sections. The renderer must not place Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs into the final HTML.
+- Node Render Data, Edge Render Data, and other production tables are inputs for image/HTML generation only. They must not appear as raw tables in the final rendered HTML unless explicitly transformed into visual nodes, arrows, cards, or hidden QA metadata.
 - Use the user's target language for visible labels. For Chinese reports, all visible headings, card labels, node names, and legends should be Chinese.
 - Avoid decorative explanatory prose in the visible hero. Use title, subtitle only if necessary, and compact metric chips.
+- Bottleneck heatmaps should default to a top-to-bottom ranking layout: long, narrow horizontal rows or a slim table, not a wide grid of cards. Each row should show rank, node, bottleneck judgement, constraint type, and heat level.
+- Commercial control points should be compact and easy to scan. Prefer two-column cards with only short fields such as `控制`, `龙头`, and `瓶颈`; avoid paragraph-style explanations inside these cards.
+- Company annotations should use logo or wordmark plus ticker for listed companies whenever practical. For private companies, use a logo/wordmark or consistent text badge; do not invent tickers.
 - Never claim supplier/customer relationships without labeling whether they are confirmed, inferred, or speculative.
 - Never present a company as a bottleneck merely because it is a market leader; explain the actual constraint.
 - Every major node must have an input, output, role in final-product formation, company leaders, and evidence status.
@@ -105,8 +109,8 @@ Default final structure:
 1. graph render brief
 2. one panoramic industry-plus-business flowchart
 3. compact process ribbon if useful
-4. node render table
-5. edge render table
-6. commercial control-point cards
-7. bottleneck heat table
+4. non-render node render table
+5. non-render edge render table
+6. compact commercial control-point cards
+7. vertical bottleneck heat ranking
 8. non-render evidence ledger
