@@ -1,9 +1,9 @@
 ---
-name: industry-chain-atlas
+name: industry-map
 description: Use when the user wants a structured industry-chain atlas for a product or sector such as HBM, EV batteries, semiconductors, robotics, energy storage, or AI infrastructure, including product decomposition, supplier/customer/competitor mapping, bottleneck ranking, evidence cross-checking from filings/reports/news, and Markdown output designed for HTML consulting-report rendering.
 ---
 
-# Industry Chain Atlas
+# Industry Map
 
 Use this skill when the user wants to analyze an industry chain, product stack, or manufacturing ecosystem and turn it into a structured Markdown graph specification that another AI can render into a consulting-style HTML infographic.
 

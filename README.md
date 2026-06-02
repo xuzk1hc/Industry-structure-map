@@ -1,4 +1,4 @@
-# Industry Structure Map
+# Industry Map
 
 A reusable skill package for building graph-first industry-chain and business-control maps.
 
@@ -119,23 +119,23 @@ Evidence quality is separate from bottleneck heat. A node can be hot but weakly 
 
 | Path | Purpose |
 | --- | --- |
-| `skills/industry-chain-atlas/SKILL.md` | Skill entrypoint, trigger description, workflow, and hard rules |
-| `skills/industry-chain-atlas/agents/openai.yaml` | OpenAI/Codex metadata, input schema, output schema, and examples |
-| `skills/industry-chain-atlas/references/workflow.md` | Detailed step-by-step workflow |
-| `skills/industry-chain-atlas/references/report-template.md` | Markdown scaffold and HTML rendering contract |
-| `skills/industry-chain-atlas/references/visual-report-pattern.md` | Long infographic layout rules |
-| `skills/industry-chain-atlas/references/graph-schema.md` | Node, edge, route, and company badge schemas |
-| `skills/industry-chain-atlas/references/evidence-standard.md` | Evidence Tier 1-6, claim states, and bottleneck heat vocabulary |
-| `skills/industry-chain-atlas/references/io-contract.md` | Portable input and output contract |
-| `skills/industry-chain-atlas/references/claude-code-adapter.md` | Claude Code confirmation behavior and portability notes |
-| `skills/industry-chain-atlas/references/hbm-mini-example.md` | Compact example using HBM |
+| `skills/industry-map/SKILL.md` | Skill entrypoint, trigger description, workflow, and hard rules |
+| `skills/industry-map/agents/openai.yaml` | OpenAI/Codex metadata, input schema, output schema, and examples |
+| `skills/industry-map/references/workflow.md` | Detailed step-by-step workflow |
+| `skills/industry-map/references/report-template.md` | Markdown scaffold and HTML rendering contract |
+| `skills/industry-map/references/visual-report-pattern.md` | Long infographic layout rules |
+| `skills/industry-map/references/graph-schema.md` | Node, edge, route, and company badge schemas |
+| `skills/industry-map/references/evidence-standard.md` | Evidence Tier 1-6, claim states, and bottleneck heat vocabulary |
+| `skills/industry-map/references/io-contract.md` | Portable input and output contract |
+| `skills/industry-map/references/claude-code-adapter.md` | Claude Code confirmation behavior and portability notes |
+| `skills/industry-map/references/hbm-mini-example.md` | Compact example using HBM |
 
 ## Quick Start Prompts
 
 Use the skill for HBM:
 
 ```text
-Use $industry-chain-atlas to build a graph-first Markdown atlas for HBM3E/HBM4.
+Use $industry-map to build a graph-first Markdown atlas for HBM3E/HBM4.
 Use global scope, a 12-24 month bottleneck outlook, Chinese visible labels, and interactive scope confirmation.
 The final Markdown should guide another AI to render a blue chip-tech style HTML long infographic.
 ```
@@ -143,7 +143,7 @@ The final Markdown should guide another AI to render a blue chip-tech style HTML
 Use the skill for rockets:
 
 ```text
-Use $industry-chain-atlas to map the launch vehicle industry.
+Use $industry-map to map the launch vehicle industry.
 Focus on reusable rockets, propulsion, avionics/GNC, structures, ground test, launch sites, launch services, satellite-constellation demand, commercial control points, and bottlenecks.
 Use Chinese visible labels and include company logo/ticker badge data where possible.
 ```
@@ -153,17 +153,17 @@ Use Chinese visible labels and include company logo/ticker badge data where poss
 Install or copy the skill folder into your skill runtime:
 
 ```text
-skills/industry-chain-atlas/
+skills/industry-map/
 ```
 
 Then invoke the skill by name:
 
 ```text
-$industry-chain-atlas
+$industry-map
 ```
 
 ## Current Status
 
-This repository currently contains one skill: `industry-chain-atlas`.
+This repository currently contains one skill: `industry-map`.
 
 The package is meant to be portable across AI agents. Runtime-specific metadata is kept in `agents/`, while the main workflow and rendering contract live in `references/`.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Industry Map"
+  short_description: "Build evidence-backed industry chain maps"
+  brand_color: "#2563EB"
+  default_prompt: "Use $industry-map to build a Markdown consulting-report atlas for HBM, including product decomposition, bottlenecks, leaders, customers, competitors, and evidence."
+
+policy:
+  allow_implicit_invocation: true
