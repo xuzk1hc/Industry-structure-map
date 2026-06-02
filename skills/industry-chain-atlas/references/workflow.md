@@ -238,7 +238,7 @@ If live source access is unavailable, follow the degradation rules in [evidence-
 
 ## 10. Report Assembly
 
-The final Markdown should include:
+The final Markdown production brief should include:
 
 - executive summary
 - scope and assumptions
@@ -253,5 +253,7 @@ The final Markdown should include:
 - evidence ledger
 - thesis breakers and update triggers
 - appendix for unresolved questions
+
+The final HTML must not render every Markdown section. It must follow the visible-section allowlist in [report-template.md](report-template.md).
 
 Use [report-template.md](report-template.md) for the exact scaffold.

@@ -31,6 +31,7 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Visible text should be in [target language].
 - Do not render this Render Brief, Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs.
 - Do not render Node Production Data or Edge Render Data as raw tables. Use them only to create visual nodes, arrows, badges, and hidden QA metadata.
+- Do not build navigation or section numbering from all Markdown headings. Use only the visible-section allowlist below.
 - Do not place generic explanatory prose under the title unless explicitly specified.
 - Use clear arrows between nodes. The reader should be able to follow the chain without reading tables.
 - Prefer a hand-laid SVG for the main flowchart when relationships are complex.
@@ -38,11 +39,43 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Show peer companies as parallel nodes feeding into a shared downstream node; never draw them as a sequential chain unless that is literally true.
 - Render bottleneck heatmaps as a vertical top-to-bottom ranking with long, narrow rows, not as a wide grid of cards.
 - Render commercial control points as compact two-column cards. Each card should mainly show `控制`, `龙头`, and `瓶颈`.
-- Show listed companies with logo or wordmark plus ticker where practical. Show unlisted companies with logo/wordmark or a consistent text badge.
+- Show listed companies with logo or wordmark plus ticker badges where practical. Show unlisted companies with logo/wordmark or a consistent text badge. Avoid plain comma-separated company lists when badge data exists.
 - If technical routes diverge, show route branches with distinct colors or route labels and explain `替代路线影响` in control-point cards.
 - Use Evidence Tier 1-6 in source data. Do not use legacy letter source labels.
 - Use claim-state and bottleneck-heat labels from `evidence-standard.md`.
 - If source freshness is `not refreshed`, do not render any newly introduced supplier/customer claim as confirmed.
+- Layer or swimlane metadata must only appear as graph lane labels or grouped backgrounds inside the main flowchart. Do not create a standalone section named `产业分层节点`, `分层节点表`, `Layer Nodes`, or similar unless the user explicitly asks for a technical appendix.
+
+## HTML Renderer Allowlist
+
+The final HTML may render only these blocks:
+
+| Block | Render rule |
+|---|---|
+| Main Title | Visible title, optional subtitle, compact chips |
+| Panoramic Industry + Business Flowchart | Main SVG/HTML graph with arrows and swimlanes |
+| Commercial Control-Point Cards | Compact card grid using `控制 / 龙头 / 瓶颈 / 替代路线影响` |
+| Bottleneck Heat Table | Vertical ranking with long, narrow rows |
+| Compact Process-Flow Ribbon | Optional if it clarifies how the product is formed |
+| Small Legend | Optional arrow, heat, and route legend |
+
+Forbidden in final HTML:
+
+- Scope Confirmation Gate
+- Render Brief instructions
+- Node Production Data table
+- Edge Render Data table
+- Company Badge Data table
+- Evidence Ledger
+- Renderer Notes
+- raw JSON or machine-readable blocks
+- raw Markdown backup
+- source URL list or bibliography
+- investment/research observation tables
+- standalone layer inventory such as `产业分层节点`
+- any section created only because it appears as a Markdown heading
+
+If a renderer includes any forbidden block as a visible HTML section, the rendering is invalid.
 
 ## Scope Confirmation Gate
 
@@ -111,6 +144,14 @@ flowchart TB
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Role in final product] | [Required inputs] | [Delivered outputs] | [Companies] | [Regional challengers] | [Logo or wordmark + ticker where practical] | [R1/R2/base/none] | [Nodes/customers] | [Substitutes] | [Critical/High/Watchlist/Not bottleneck] | [confirmed/strongly inferred/weakly inferred/speculative/disputed/stale] | [refreshed/not refreshed/stale/needs refresh] | [Tier 1-6] | [E01] |
 
+## Non-Render Data: Company Badge Data
+
+Use this table to render visible company badges. Do not display this table itself.
+
+| Company | Listed status | Ticker | Logo / wordmark hint | Fallback badge text | Notes |
+|---|---|---|---|---|---|
+| [Company] | [listed/private/subsidiary/state-owned/unknown] | [Ticker or none] | [Logo source hint or wordmark] | [Short fallback label] | [Optional note] |
+
 ## Non-Render Data: Edge Render Data
 
 | From | To | Relationship type | Render style | Route ID | Meaning | Claim state | Evidence tier | Evidence hooks |
@@ -158,10 +199,12 @@ flowchart LR
 - Treat the Mermaid graph as a source spec or layout brief. Use custom SVG/HTML when the final long infographic needs precise styling.
 - Use node production data for visual node/card contents and styling; do not display the node table itself.
 - Use edge render data for line styles and labels; do not display the edge table itself.
+- Use company badge data for visible company labels; do not display the company badge table itself.
 - Use evidence hooks only for hidden QA or optional hover citations; do not show the full Evidence Ledger.
 - Keep detailed prose out of the rendered graph.
 - If converting Mermaid to custom SVG, preserve the node order, edge direction, dashed commercial relationships, and bottleneck styling.
 - Company visuals should prefer logo/wordmark plus ticker for listed companies and logo/wordmark or text badge for private companies.
 - Preserve route IDs and route colors when technical routes diverge.
 - Treat missing quantitative indicators as `unknown`; do not invent numbers.
+- Build final HTML navigation only from the visible-section allowlist.
 ````

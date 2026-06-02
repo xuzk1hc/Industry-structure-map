@@ -22,6 +22,8 @@ Do not rely on one giant all-detail diagram. For report-style outputs, use one h
 
 Node and edge tables are production data. They should support diagram construction and QA, not appear as raw tables in the final rendered HTML.
 
+Layer and swimlane metadata is also production data. It should define graph grouping, not a standalone visible section.
+
 ## Panoramic Atlas Rules
 
 Use this when the user wants an infographic-like report.
@@ -50,6 +52,8 @@ Recommended swimlanes:
 5. downstream demand: customers, end markets, and terminal use cases
 6. bottom data strip: market size, bottleneck metrics, share, lead time, adoption, or growth data
 
+Do not render a standalone layer inventory. If a table describes layers, use it only to place graph lanes and preserve relationships.
+
 ## Node Schema
 
 Every important node should be representable as:
@@ -76,6 +80,19 @@ Every important node should be representable as:
 | Evidence tier | Best supporting source tier, using Evidence Tier 1-6 |
 | Source freshness | refreshed, not refreshed, stale, needs refresh |
 | Source hooks | Short source labels tied to the evidence ledger |
+
+## Company Badge Schema
+
+Use this data when companies appear visibly in graph nodes, badges, cards, or tables.
+
+| Field | Meaning |
+|---|---|
+| Company | Company or institution name |
+| Listed status | listed, private, subsidiary, state-owned, unknown |
+| Ticker | Public ticker if listed; `none` if private or unavailable |
+| Logo / wordmark hint | Logo URL, known wordmark, or renderer lookup hint |
+| Fallback badge text | Short visible badge if logo cannot be fetched |
+| Notes | Optional role or ownership note |
 
 ## Link Schema
 
@@ -258,7 +275,9 @@ To help downstream HTML rendering:
 - use short source IDs such as `E01`, `E02`, `E03`
 - keep source URLs or document names in the evidence ledger, not inside Mermaid labels
 - keep non-render node and edge tables out of final HTML unless transformed into visual graph elements
+- keep company badge tables, raw JSON, source lists, and raw Markdown backups out of final HTML
 - show listed companies as logo/wordmark plus ticker where practical; use consistent badges for private companies
 - use Evidence Tier 1-6, not legacy letter source labels
 - use route IDs and route colors when technical routes diverge
 - prefer custom SVG/HTML for final long infographics; use Mermaid as a source spec when the renderer cannot directly style it well
+- never create a standalone `产业分层节点` or layer-card section unless the user explicitly requests a technical appendix

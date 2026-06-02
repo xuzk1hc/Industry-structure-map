@@ -49,8 +49,31 @@ Final Markdown output:
 | Commercial Control-Point Cards | Visible, transformed into compact cards |
 | Bottleneck Heat Table | Visible, transformed into vertical ranking |
 | Compact Process-Flow Ribbon | Visible if useful |
+| Company Badge Data | Non-render production data for logo/ticker badges |
 | Evidence Ledger | Non-render source QA |
 | Renderer Notes | Non-render instruction |
+
+Final HTML allowlist:
+
+- Main Title
+- Panoramic Industry + Business Flowchart
+- Commercial Control-Point Cards
+- Bottleneck Heat Table
+- Compact Process-Flow Ribbon
+- Small Legend
+
+Final HTML denylist:
+
+- Scope Confirmation Gate
+- Node Production Data
+- Edge Render Data
+- Company Badge Data
+- Evidence Ledger
+- Renderer Notes
+- raw JSON or machine-readable blocks
+- raw Markdown backup
+- source URL lists
+- standalone layer inventory
 
 ## Evidence Fields
 
@@ -88,6 +111,7 @@ This skill can:
 - decompose product systems into product, component, process, equipment, material, and integration nodes
 - build a graph-first industry-plus-business map
 - separate visible HTML blocks from non-render production data
+- prevent downstream renderers from turning non-render Markdown headings into visible report sections
 - rank bottlenecks with evidence-bound qualitative and optional quantitative signals
 - compare competing technology routes when they materially affect the chain
 - degrade gracefully when live source access is unavailable

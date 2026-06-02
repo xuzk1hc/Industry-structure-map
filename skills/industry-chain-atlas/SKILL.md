@@ -60,11 +60,13 @@ Use this order unless the user explicitly requests a narrower task:
 - The Markdown artifact is an instruction/specification for the next renderer, not the visible report body.
 - Clearly mark visible sections and non-render sections. The renderer must not place Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs into the final HTML.
 - Node Production Data, Edge Render Data, and other production tables are inputs for image/HTML generation only. They must not appear as raw tables in the final rendered HTML unless explicitly transformed into visual nodes, arrows, cards, or hidden QA metadata.
+- Renderers must use a visible-section allowlist, not all Markdown headings. Do not create final HTML sections from Scope Confirmation Gate, Node Production Data, Edge Render Data, Evidence Ledger, Renderer Notes, JSON blocks, raw Markdown backups, source URL lists, observation tables, or other machine-readable sections.
+- Layer or swimlane metadata must not become a standalone visible section such as `产业分层节点`. Use it only as background lanes, grouping labels, or layout metadata inside the main graph unless the user explicitly asks for a technical appendix.
 - Use the user's target language for visible labels. For Chinese reports, all visible headings, card labels, node names, and legends should be Chinese.
 - Avoid decorative explanatory prose in the visible hero. Use title, subtitle only if necessary, and compact metric chips.
 - Bottleneck heatmaps should default to a top-to-bottom ranking layout: long, narrow horizontal rows or a slim table, not a wide grid of cards. Each row should show rank, node, bottleneck judgement, constraint type, and heat level.
 - Commercial control points should be compact and easy to scan. Prefer two-column cards with only short fields such as `控制`, `龙头`, and `瓶颈`; avoid paragraph-style explanations inside these cards.
-- Company annotations should use logo or wordmark plus ticker for listed companies whenever practical. For private companies, use a logo/wordmark or consistent text badge; do not invent tickers.
+- Company annotations in visible HTML should use logo or wordmark plus ticker badges for listed companies whenever practical. For private companies, use a logo/wordmark or consistent text badge; do not invent tickers. Avoid plain comma-separated company lists in visible graph nodes or cards when badge data is available.
 - Use Evidence Tier 1-6 for source quality. Do not use legacy letter source labels.
 - Keep evidence quality separate from bottleneck heat. Evidence Tier 1-6 grades sources; bottleneck heat grades system constraint severity.
 - Every output must include an evidence cutoff. If current source access is unavailable, set it to `not refreshed` and apply the degradation rules in [references/evidence-standard.md](references/evidence-standard.md).
@@ -86,6 +88,7 @@ For a short answer, still include:
 - one product/system definition
 - one industry-plus-business flowchart
 - compact node and edge render data
+- company badge data when companies are shown visibly
 - top 3 bottlenecks
 - strongest evidence and weakest assumption
 - what to verify next
@@ -119,7 +122,7 @@ It may mention listed companies, but the primary object is the industry system:
 - how evidence supports or weakens the map
 - what changes would force the map to be redrawn
 
-Default final structure:
+Default Markdown production structure. This is not the final HTML render order:
 
 1. graph render brief
 2. one panoramic industry-plus-business flowchart

@@ -16,5 +16,7 @@ The skill produces Markdown rendering briefs, not final visible report text. It 
 - Evidence quality uses `Evidence Tier 1-6`; claim state and bottleneck heat use fixed vocabularies from `references/evidence-standard.md`.
 - Competing technology routes are shown as route branches when they materially change the chain.
 - Bottleneck rankings can include sourced quantitative signals such as supplier concentration, HHI proxy or lower-bound estimates, utilization, ASP trend, qualification cycle, lead time, and capex/ramp triggers.
+- Final HTML rendering must follow a visible-section allowlist. Non-render data, JSON, raw Markdown backups, source lists, renderer notes, and standalone layer inventories must not appear as visible report sections.
+- Visible company labels should use logo or wordmark plus ticker badges when practical, with fallback badges for private companies.
 - Portable input/output fields live in `references/io-contract.md`; Claude Code confirmation behavior lives in `references/claude-code-adapter.md`.
 - A compact HBM example lives in `references/hbm-mini-example.md`.

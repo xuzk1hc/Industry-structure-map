@@ -37,6 +37,12 @@ Ask the user to confirm or adjust before final atlas generation.
 
 **Mode:** interactive with scope confirmation.
 
+## HTML Renderer Allowlist
+
+Render only: Main Title, Panoramic Industry + Business Flowchart, Commercial Control-Point Cards, Bottleneck Heat Table, Compact Process-Flow Ribbon, Small Legend.
+
+Do not render: Scope Confirmation Gate, Node Production Data, Edge Render Data, Company Badge Data, Evidence Ledger, raw JSON, source URLs, raw Markdown backup, standalone layer inventory.
+
 ## Visible Block: Panoramic Industry + Business Flowchart
 
 ```mermaid
@@ -68,6 +74,15 @@ flowchart TB
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | HBM-STACK | 产品形成 | HBM3E/HBM4 stack | Product subsystem | Provides high-bandwidth memory close to accelerator compute | DRAM dies; TSV; bonding; test | Finished HBM stack | SK hynix; Samsung; Micron | none material in example | SK hynix (000660.KS); Samsung (005930.KS); Micron (MU) | R1/R2 | CoWoS / GPU platform | GDDR; CXL memory pooling; on-package SRAM | Critical | weakly inferred | needs refresh | Tier 4 | E01 |
 | ADV-PKG | 封装与平台 | CoWoS / 2.5D package | Integration process | Integrates HBM stack with accelerator compute die | HBM stack; interposer; substrate; compute die | Accelerator package | TSMC | OSAT challengers depending scope | TSMC (TSM) | base | GPU / ASIC platform | alternate advanced packaging routes | Critical | weakly inferred | needs refresh | Tier 4 | E02 |
+
+## Non-Render Data: Company Badge Data
+
+| Company | Listed status | Ticker | Logo / wordmark hint | Fallback badge text | Notes |
+|---|---|---|---|---|---|
+| SK hynix | listed | 000660.KS | SK hynix wordmark | SK hynix 000660.KS | HBM supplier |
+| Samsung Electronics | listed | 005930.KS | Samsung wordmark | Samsung 005930.KS | HBM supplier |
+| Micron | listed | MU | Micron wordmark | Micron MU | HBM supplier |
+| TSMC | listed | TSM | TSMC wordmark | TSMC TSM | Advanced packaging |
 
 ## Non-Render Data: Edge Render Data
 

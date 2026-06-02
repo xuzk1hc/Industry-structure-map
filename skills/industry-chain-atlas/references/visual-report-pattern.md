@@ -91,13 +91,22 @@ Visible in final HTML:
 Do not render directly:
 
 - Render Brief instructions
+- Scope Confirmation Gate
 - Node Production Data and Edge Render Data tables unless converting them into visual nodes, arrows, cards, or hidden QA metadata
+- Company Badge Data table
 - Evidence Ledger
 - Renderer Notes
+- raw JSON or machine-readable blocks
+- raw Markdown backup
 - source URLs
+- source list or bibliography
+- investment/research observation tables
+- standalone layer inventory such as `产业分层节点`
 - long reasoning paragraphs
 
 The final HTML should never look like it rendered the production Markdown line by line. Treat production tables as data behind the graphic.
+
+Do not build the report navigation from all Markdown headings. Build navigation only from visible blocks.
 
 For Chinese outputs, visible text should be Chinese. Keep English only for unavoidable company names, product names, and standards such as HBM4, CoWoS, TSV, GPU, ASIC.
 
@@ -107,9 +116,9 @@ Avoid visible hero paragraphs. The top area should usually contain only:
 - 4-6 chips
 - optional legend
 
-## Graph-First Markdown Order
+## Graph-First Markdown Production Order
 
-Use this order when the user mainly wants a chart:
+Use this order in the Markdown production brief when the user mainly wants a chart. This is not the final HTML section order; final HTML must follow the visible-section allowlist.
 
 1. title
 2. render brief
@@ -159,6 +168,7 @@ For visible company labels:
 - if the renderer cannot fetch a logo, use a styled fallback badge with the company name and ticker if available
 - do not invent logos, listing status, or tickers
 - keep company badges smaller than product/process node labels so the graph remains product-led
+- avoid plain comma-separated company lists in visible graph nodes or cards when company badge data exists
 
 ## Panoramic Atlas Layout
 
@@ -170,6 +180,8 @@ Default swimlanes:
 4. Integration/platform layer: packaging, foundry, system integration, marketplace, or platform controller.
 5. Downstream customer layer: immediate customers and terminal demand.
 6. Bottom data strip: market size, share, lead time, capacity, growth, adoption, or bottleneck metrics.
+
+Swimlanes are layout metadata. Render them as graph backgrounds, group labels, or lane headers inside the main atlas. Do not render a separate layer-card grid or standalone `产业分层节点` section unless the user explicitly asks for a technical appendix.
 
 ## What To Merge
 
@@ -229,9 +241,9 @@ Good visible formats:
 
 Do not fabricate exact figures for visual polish. Numeric metrics require method plus evidence ID in non-render data.
 
-## Full Report Order
+## Full Markdown Production Order
 
-Use this order for full reports:
+Use this order for full Markdown production briefs. This is not permission to render every section into final HTML.
 
 1. title and render brief
 2. panoramic industry-plus-business flowchart
@@ -249,8 +261,10 @@ Use this order for full reports:
 - Put company names in node subtitles or cards, not in every edge.
 - Put evidence IDs in tables, not the diagram.
 - Keep raw node/edge tables out of the rendered HTML. The renderer should consume them as data, not display them.
+- Keep company badge, evidence, JSON, source, and renderer-note tables out of the rendered HTML.
 - Do not claim direct supply unless confirmed or clearly labeled as reported/inferred.
 - If the main chart becomes too dense, split by system: product formation, commercial control points, and end demand.
 - Do not render the Evidence Ledger in final HTML unless the user explicitly asks for visible citations.
 - For complex maps, show merge/split relationships explicitly. Do not imply that peer companies are sequential steps.
 - Use Evidence Tier 1-6 in source ledgers; do not use legacy letter source labels.
+- Treat visible-section denylist violations as render failures, not style preferences.
