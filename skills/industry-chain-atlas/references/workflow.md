@@ -13,6 +13,7 @@ Minimum scope fields:
 - geography: global by default; add China, US, Japan, Korea, Europe, or Taiwan if relevant
 - horizon: current state plus 12-24 month bottleneck outlook by default
 - output depth: short map, full Markdown report, or company drilldown
+- mode: interactive by default for full reports; one-pass only when the user asks to skip confirmation
 
 If the user gives only a sector name, use:
 
@@ -73,7 +74,43 @@ Examples:
 - EV batteries can combine LFP/NMC cathodes, graphite/silicon anodes, wet/dry separators, liquid/solid electrolytes, cylindrical/prismatic/pouch formats, and different pack structures.
 - HBM combines DRAM die technology, TSV, bonding, base die or logic interface, advanced packaging, interposer/substrate, thermal handling, and GPU/accelerator qualification.
 
-## 4. Process-Chain Mapping
+## 3.5 Scope Confirmation Gate
+
+Pause after product decomposition for full report or complex visual-map tasks.
+
+Show a brief structured summary:
+
+- product tree, 3-5 levels
+- proposed swimlanes for the main atlas
+- top-3 suspected bottlenecks, clearly marked as preliminary
+- major technology-route choices or design variants, if any
+- assumptions that will affect the graph
+
+Ask the user to confirm or adjust before proceeding to atlas design.
+
+If the user explicitly asks for a one-pass answer, skip the pause but state the product-tree assumptions before continuing.
+
+## 4. Technology-Route Divergence
+
+Before the main atlas, check whether the product has meaningful route competition.
+
+Examples:
+
+- optical modules: EML versus silicon photonics; LPO versus DSP-retimed architectures
+- batteries: LFP versus NMC; graphite versus silicon-rich anode; liquid versus solid electrolyte
+- AI memory: HBM versus GDDR, CXL memory pooling, on-package SRAM, or other memory hierarchy alternatives
+- power semiconductors: SiC MOSFET versus IGBT or GaN in relevant voltage/power ranges
+
+When routes matter:
+
+- assign route IDs such as `R1`, `R2`, `R3`
+- use route colors or branch labels in the main graph
+- add `alternative route impact` or `替代路线影响` to commercial control-point cards
+- include the route's impact on bottleneck strength, customer qualification, capex, and substitution risk
+
+Skip this step when there is no material route split. Do not invent a route battle for visual symmetry.
+
+## 5. Process-Chain Mapping
 
 After decomposition, map how pieces become the final product.
 
@@ -92,7 +129,7 @@ For each link, ask:
 - What must be true before the downstream node can ramp?
 - Is the constraint capacity, yield, quality, certification, IP, tooling, materials, geopolitics, or customer concentration?
 
-## 5. Visual Atlas Design
+## 6. Visual Atlas Design
 
 For consulting-style Markdown or HTML reports, build the visual hierarchy before writing all text.
 
@@ -100,7 +137,7 @@ Default visual system:
 
 1. Panoramic industry-chain atlas: one main diagram that merges product structure and business relationships.
 2. Process-flow ribbon: a compact manufacturing sequence below or after the main diagram.
-3. Commercial control-point cards: 6-8 cards explaining where power, margin, qualification, and bottlenecks sit.
+3. Commercial control-point cards: 4-8 compact cards explaining where power, margin, qualification, and bottlenecks sit.
 4. Node atlas table: dense facts that do not fit inside the diagram.
 5. Bottleneck heatmap: rank constraints and falsification tests.
 
@@ -112,7 +149,7 @@ Main diagram rule:
 
 When the report needs to resemble a long-form infographic, read [visual-report-pattern.md](visual-report-pattern.md).
 
-## 6. Company-Role Mapping
+## 7. Company-Role Mapping
 
 For each important node, identify:
 
@@ -136,7 +173,9 @@ Use roles rather than generic labels:
 - platform controller
 - emerging substitute
 
-## 7. Bottleneck Ranking
+For listed companies, capture logo/ticker hints where practical. For private companies, capture logo/wordmark or fallback badge text.
+
+## 8. Bottleneck Ranking
 
 A bottleneck is a node that can limit system ramp, not merely a famous company.
 
@@ -153,14 +192,25 @@ Rank candidate bottlenecks across:
 - pricing power
 - evidence strength
 
-Use the following labels:
+Optional quantitative signals, only when data is available:
 
-- Tier 1 bottleneck: likely to constrain system ramp now or within 12-24 months, with strong evidence.
-- Tier 2 bottleneck: plausible constraint, but timing or evidence is less certain.
-- Watchlist bottleneck: structurally important, but not yet proven as the binding constraint.
-- False bottleneck: important node, but ample capacity, easy substitution, or weak demand proof.
+- supplier concentration HHI
+- capacity utilization estimate
+- ASP trend over the latest four quarters
+- qualification or certification cycle in months
+- lead time, allocation, or booked-capacity signal
+- capex, tool delivery, or capacity-ramp trigger
 
-## 8. Evidence Cross-Check
+If data is unavailable, write `unknown` or omit the metric. Do not estimate precise figures without evidence.
+
+Use heat labels for bottleneck severity:
+
+- Critical bottleneck: likely to constrain system ramp now or within 12-24 months, with strong evidence.
+- High bottleneck: plausible constraint, but timing or evidence is less certain.
+- Watchlist: structurally important, but not yet proven as the binding constraint.
+- Weak or false bottleneck: important node, but ample capacity, easy substitution, or weak demand proof.
+
+## 9. Evidence Cross-Check
 
 Do not let one source drive the map.
 
@@ -178,7 +228,9 @@ Output the evidence state clearly:
 - disputed
 - stale and needs refresh
 
-## 9. Report Assembly
+Grade source quality with Evidence Tier 1-6 from [evidence-standard.md](evidence-standard.md). Do not use legacy letter source labels.
+
+## 10. Report Assembly
 
 The final Markdown should include:
 

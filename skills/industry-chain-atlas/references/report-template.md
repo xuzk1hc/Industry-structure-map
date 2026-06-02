@@ -21,6 +21,8 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 
 **Evidence cutoff:** [Date of source refresh.]
 
+**Mode:** [interactive with scope confirmation / one-pass with stated assumptions]
+
 ## Visible HTML Requirements
 
 - Final HTML must look like a long-form consulting infographic, not a Markdown document.
@@ -35,6 +37,20 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Render bottleneck heatmaps as a vertical top-to-bottom ranking with long, narrow rows, not as a wide grid of cards.
 - Render commercial control points as compact two-column cards. Each card should mainly show `控制`, `龙头`, and `瓶颈`.
 - Show listed companies with logo or wordmark plus ticker where practical. Show unlisted companies with logo/wordmark or a consistent text badge.
+- If technical routes diverge, show route branches with distinct colors or route labels and explain `替代路线影响` in control-point cards.
+- Use Evidence Tier 1-6 in source data. Do not use legacy letter source labels.
+
+## Scope Confirmation Gate
+
+Use this section before final atlas generation in interactive mode. Do not render it in the final HTML.
+
+| Field | Draft confirmation content |
+|---|---|
+| Product tree | [3-5 level tree summary] |
+| Proposed swimlanes | [Main atlas swimlanes] |
+| Preliminary top-3 bottlenecks | [Preliminary, not final] |
+| Technology routes | [Route IDs or "none material"] |
+| Assumptions needing confirmation | [Short list] |
 
 ## Visible Block 1: Main Title
 
@@ -87,31 +103,31 @@ flowchart TB
 
 ## Non-Render Data: Node Render Data
 
-| Node ID | Layer | Node label | Node type | Global leaders | Logo / ticker hints | Customers / next node | Bottleneck status | Evidence hooks |
-|---|---|---|---|---|---|---|---|---|
-| [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Companies] | [Logo or wordmark + ticker where practical] | [Nodes/customers] | [Tier 1/Tier 2/Watchlist/None] | [E01] |
+| Node ID | Layer | Node label | Node type | Global leaders | Logo / ticker hints | Route ID | Customers / next node | Bottleneck heat | Evidence tier | Evidence hooks |
+|---|---|---|---|---|---|---|---|---|---|---|
+| [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Companies] | [Logo or wordmark + ticker where practical] | [R1/R2/base/none] | [Nodes/customers] | [Critical/High/Watchlist/None] | [Tier 1-6] | [E01] |
 
 ## Non-Render Data: Edge Render Data
 
-| From | To | Relationship type | Render style | Meaning | Evidence hooks |
-|---|---|---|---|---|---|
-| [Node A] | [Node B] | [physical input / integration / supplier / customer / qualification / substitute] | [solid / dashed / red] | [Short explanation] | [E01] |
+| From | To | Relationship type | Render style | Route ID | Meaning | Evidence tier | Evidence hooks |
+|---|---|---|---|---|---|---|---|
+| [Node A] | [Node B] | [physical input / integration / supplier / customer / qualification / substitute] | [solid / dashed / red / route-color] | [R1/R2/base/none] | [Short explanation] | [Tier 1-6] | [E01] |
 
 ## Visible Block 3: Commercial Control-Point Cards
 
 Render these as compact cards, not as a visible table. Use two columns on desktop and one column on mobile.
 
-| Control point | 控制 | 龙头 | 瓶颈 | Optional customer / validation note | Evidence hooks |
-|---|---|---|---|---|---|
-| [Control point] | [Power or profit pool in one phrase] | [Logo/ticker badges or company names] | [Constraint in one phrase] | [Optional short note] | [E01, E02] |
+| Control point | 控制 | 龙头 | 瓶颈 | 替代路线影响 | Optional customer / validation note | Evidence hooks |
+|---|---|---|---|---|---|---|
+| [Control point] | [Power or profit pool in one phrase] | [Logo/ticker badges or company names] | [Constraint in one phrase] | [Bypass / weaken / reinforce / none] | [Optional short note] | [E01, E02] |
 
 ## Visible Block 4: Bottleneck Heat Table
 
 Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not render it as a wide card grid.
 
-| Rank | Node | Bottleneck thesis | Constraint type | Global leaders | Evidence strength | Breaker |
-|---|---|---|---|---|---|---|
-| 1 | [Node] | [Thesis] | [Capacity/yield/qualification/etc.] | [Companies] | [High/Medium/Low] | [What would weaken it] |
+| Rank | Node | Bottleneck thesis | Constraint type | Global leaders | Quant signals | Evidence tier | Breaker |
+|---|---|---|---|---|---|---|---|
+| 1 | [Node] | [Thesis] | [Capacity/yield/qualification/etc.] | [Companies] | [HHI / utilization / ASP trend / qualification cycle if available; unknown if not] | [Tier 1-6] | [What would weaken it] |
 
 ## Visible Block 5: Compact Process-Flow Ribbon
 
@@ -129,9 +145,9 @@ flowchart LR
 
 ## Non-Render Data: Evidence Ledger
 
-| ID | Source | Date | Evidence grade | Claim supported | Notes |
+| ID | Source | Date | Evidence tier | Claim supported | Notes |
 |---|---|---|---|---|---|
-| E01 | [Source title / company / document] | [YYYY-MM-DD] | [A/B/C/D/E] | [Claim] | [Notes] |
+| E01 | [Source title / company / document] | [YYYY-MM-DD] | [Tier 1-6] | [Claim] | [Notes] |
 
 ## Renderer Notes
 
@@ -142,4 +158,6 @@ flowchart LR
 - Keep detailed prose out of the rendered graph.
 - If converting Mermaid to custom SVG, preserve the node order, edge direction, dashed commercial relationships, and bottleneck styling.
 - Company visuals should prefer logo/wordmark plus ticker for listed companies and logo/wordmark or text badge for private companies.
+- Preserve route IDs and route colors when technical routes diverge.
+- Treat missing quantitative indicators as `unknown`; do not invent numbers.
 ````

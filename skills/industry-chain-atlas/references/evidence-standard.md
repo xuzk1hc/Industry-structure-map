@@ -4,15 +4,16 @@ Use this file to grade source quality and prevent unsupported supply-chain claim
 
 ## Source Hierarchy
 
-Grade evidence by source type:
+Use Evidence Tier 1-6. Do not use legacy letter source labels.
 
-| Grade | Source type | Examples | Use |
+| Evidence tier | Source type | Examples | Use |
 |---|---|---|---|
-| A | Direct official evidence | Annual reports, 10-K/20-F, quarterly reports, earnings-call transcripts, investor presentations, official capacity announcements, customer/supplier disclosures | Best for confirmed relationships, capacity, capex, strategy, risk factors |
-| B | Official adjacent-chain evidence | Supplier announcement, customer qualification comment, equipment order, regulatory filing, industry association data | Strong when it confirms the same node from another side |
-| C | Credible industry reporting | Reputable trade press, technical publications, market research summaries, supply-chain news | Useful for timing, pricing, lead time, and industry context |
-| D | Analyst or broker interpretation | Sell-side reports, industry notes, expert-call summaries when accessible | Useful but must be labeled as interpretation unless backed by direct evidence |
-| E | Weak signal | Social media, forums, unattributed channel checks, unsourced screenshots | Never use alone for a major claim |
+| Tier 1 | Confirmed official disclosure | Annual reports, 10-K/20-F, quarterly reports, official capacity announcements, named customer/supplier disclosures, regulatory filings with direct claim support | Best for confirmed relationships, capacity, capex, strategy, risk factors, named customer/supplier links |
+| Tier 2 | Management statement or official company commentary | Earnings-call transcripts, investor presentations, IR Q&A, official guidance, executive interviews on company channels | Strong but label as management claim unless backed by Tier 1 disclosure |
+| Tier 3 | Official adjacent-chain evidence | Supplier announcements, customer qualification comments, equipment orders, industry association data, government or standards-body data | Strong when it confirms the same node from another side |
+| Tier 4 | Credible industry reporting or technical publication | Reputable trade press, technical publications, market research summaries, supply-chain news from named outlets | Useful for timing, pricing, lead time, and industry context |
+| Tier 5 | Analyst or broker interpretation | Sell-side reports, industry notes, expert-call summaries when accessible | Useful but must be labeled as interpretation unless backed by Tier 1-4 evidence |
+| Tier 6 | Weak signal | Social media, forums, unattributed channel checks, unsourced screenshots, anonymous rumors | Never use alone for a major claim |
 
 ## Evidence Buckets
 
@@ -34,6 +35,8 @@ Label major claims:
 - Speculative: useful hypothesis, not yet evidence-backed.
 - Disputed: sources conflict.
 - Stale: evidence is older than the current cycle and needs refresh.
+
+Evidence tier grades the source. Claim label grades what can be asserted from that source. Keep them separate.
 
 ## Supplier/Customer Relationship Rules
 
@@ -74,9 +77,24 @@ A bottleneck thesis is weaker when:
 
 Use short source IDs in the report body and full details in the ledger.
 
-| ID | Source | Date | Evidence grade | Claim supported | Notes |
+| ID | Source | Date | Evidence tier | Claim supported | Notes |
 |---|---|---|---|---|---|
-| E01 | Company annual report / earnings call / report title | YYYY-MM-DD | A/B/C/D/E |  |  |
+| E01 | Company annual report / earnings call / report title | YYYY-MM-DD | Tier 1-6 |  |  |
+
+## Optional Quantitative Bottleneck Signals
+
+Use quantitative support when available:
+
+| Signal | Use | Rule |
+|---|---|---|
+| Supplier HHI | Measures concentration of supply or revenue share | Use only with sourced share data; otherwise mark unknown |
+| Capacity utilization | Shows whether capacity is likely binding | Use disclosed utilization, shipment/capacity data, or credible estimates only |
+| ASP trend, latest four quarters | Shows scarcity or commoditization pressure | Use company disclosure or reputable market data |
+| Qualification cycle, months | Shows customer lock-in and ramp friction | Use disclosed qualification timelines or credible industry reporting |
+| Lead time / allocation signal | Shows near-term shortage or easing | Use official comments, credible channel checks, or trade reporting |
+| Capex / ramp trigger | Shows when bottleneck could break | Use disclosed capex, tool delivery, or capacity-ramp announcements |
+
+If a metric is unavailable, write `unknown`. Do not invent precision.
 
 ## Cross-Verification Matrix
 

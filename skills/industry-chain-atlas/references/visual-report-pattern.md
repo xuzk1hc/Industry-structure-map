@@ -72,6 +72,7 @@ For each output, make sure another AI can render the graph without guessing:
 - every node has a type, layer, leader companies, bottleneck status, and evidence hooks
 - every edge has a relationship type such as `physical input`, `integration`, `supplier`, `qualification`, `customer`, `substitute`, or `competition`
 - commercial control points are separated from evidence notes
+- competing technology routes use stable route labels and branch colors when they materially change the chain
 
 ## Visible Versus Non-Render Content
 
@@ -193,6 +194,7 @@ Keep separate or secondary:
 - Red marker: bottleneck.
 - Yellow marker: watchlist bottleneck.
 - Grey marker: weak or unverified relationship.
+- Blue/green/purple route lines: competing technical routes or design variants. Use only when route divergence matters.
 
 ## Commercial Control-Point Cards
 
@@ -202,6 +204,7 @@ Each card should include:
 - `控制`: the thing being controlled in one short phrase
 - `龙头`: 1-4 leader badges, ideally logo plus ticker for listed companies
 - `瓶颈`: the constraint mechanism in one short phrase
+- `替代路线影响`: optional one short phrase when a competing route can bypass, weaken, or reinforce the control point
 
 Recommended card types:
 
@@ -213,6 +216,18 @@ Recommended card types:
 - downstream platform customer
 - terminal demand pool
 - emerging substitute or challenger
+
+## Quantitative Bottleneck Signals
+
+Use quantitative signals only when sourced data exists.
+
+Good visible formats:
+
+- small metric chips inside bottleneck rows
+- concise tokens such as `HHI: high`, `utilization: >90%`, `qualification: 12-18 months`
+- `unknown` when the metric is material but unavailable
+
+Do not fabricate exact figures for visual polish.
 
 ## Full Report Order
 
@@ -238,3 +253,4 @@ Use this order for full reports:
 - If the main chart becomes too dense, split by system: product formation, commercial control points, and end demand.
 - Do not render the Evidence Ledger in final HTML unless the user explicitly asks for visible citations.
 - For complex maps, show merge/split relationships explicitly. Do not imply that peer companies are sequential steps.
+- Use Evidence Tier 1-6 in source ledgers; do not use legacy letter source labels.

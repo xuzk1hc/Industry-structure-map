@@ -34,6 +34,8 @@ Instead, build a product-aware atlas:
 - For long-form consulting infographic layouts that merge product structure and business relationships, read [references/visual-report-pattern.md](references/visual-report-pattern.md).
 - For evidence grading, source hierarchy, and cross-check rules, read [references/evidence-standard.md](references/evidence-standard.md).
 - For the final Markdown output scaffold, read [references/report-template.md](references/report-template.md).
+- For portable input/output fields, examples, and agent-neutral contract details, read [references/io-contract.md](references/io-contract.md).
+- For Claude Code-style confirmation behavior and portability notes, read [references/claude-code-adapter.md](references/claude-code-adapter.md).
 
 ## Required Workflow
 
@@ -41,12 +43,14 @@ Use this order unless the user explicitly requests a narrower task:
 
 1. Scope gate: identify product, generation, geography, time horizon, and desired output depth.
 2. Product decomposition: break the final product into modules, subcomponents, materials, equipment, processes, testing, and integration.
-3. Main atlas design: for report-style outputs, merge the product structure tree and business relationship chain into one panoramic industry map; keep the process chain as a second-layer ribbon or drilldown.
-4. Process-chain mapping: show how raw inputs become components, how components become subsystems, and how subsystems become the final product.
-5. Company-role mapping: for each node, name global leaders, important regional players, downstream customers, competitors, and likely substitutes.
-6. Bottleneck ranking: identify where demand growth would break the chain first.
-7. Evidence cross-check: validate key claims with company evidence, research/report evidence, and industry-news evidence.
-8. Markdown assembly: output a graph-first Markdown file whose primary artifact is the industry-plus-business flowchart; tables, cards, bottleneck notes, and evidence are supporting render data.
+2.5. Scope confirmation gate: show the product tree, proposed swimlanes, preliminary top-3 bottlenecks, and major route choices; ask the user to confirm or adjust before drawing the main atlas. If the user explicitly asks for one-pass output, proceed but state assumptions.
+3. Technology-route divergence: when clear competing routes exist, identify them before graph design and preserve them as colored branches or route labels.
+4. Main atlas design: for report-style outputs, merge the product structure tree and business relationship chain into one panoramic industry map; keep the process chain as a second-layer ribbon or drilldown.
+5. Process-chain mapping: show how raw inputs become components, how components become subsystems, and how subsystems become the final product.
+6. Company-role mapping: for each node, name global leaders, important regional players, downstream customers, competitors, and likely substitutes.
+7. Bottleneck ranking: identify where demand growth would break the chain first; add optional quantitative signals only when data is available.
+8. Evidence cross-check: validate key claims with company evidence, research/report evidence, and industry-news evidence using Evidence Tier 1-6.
+9. Markdown assembly: output a graph-first Markdown file whose primary artifact is the industry-plus-business flowchart; tables, cards, bottleneck notes, and evidence are supporting render data.
 
 ## Hard Rules
 
@@ -60,6 +64,10 @@ Use this order unless the user explicitly requests a narrower task:
 - Bottleneck heatmaps should default to a top-to-bottom ranking layout: long, narrow horizontal rows or a slim table, not a wide grid of cards. Each row should show rank, node, bottleneck judgement, constraint type, and heat level.
 - Commercial control points should be compact and easy to scan. Prefer two-column cards with only short fields such as `控制`, `龙头`, and `瓶颈`; avoid paragraph-style explanations inside these cards.
 - Company annotations should use logo or wordmark plus ticker for listed companies whenever practical. For private companies, use a logo/wordmark or consistent text badge; do not invent tickers.
+- Use Evidence Tier 1-6 for source quality. Do not use legacy letter source labels.
+- Keep evidence quality separate from bottleneck heat. Evidence Tier 1-6 grades sources; bottleneck heat grades system constraint severity.
+- Quantitative bottleneck signals are optional and evidence-bound. Use HHI, capacity utilization, ASP trend, qualification cycle, lead time, or capex/ramp signals only when data is available; otherwise mark `unknown` and do not guess.
+- When competing technical routes matter, show route branches in the main graph and add `替代路线影响` to control-point cards.
 - Never claim supplier/customer relationships without labeling whether they are confirmed, inferred, or speculative.
 - Never present a company as a bottleneck merely because it is a market leader; explain the actual constraint.
 - Every major node must have an input, output, role in final-product formation, company leaders, and evidence status.
@@ -89,6 +97,8 @@ Always separate:
 - analyst/research-report interpretation
 - inference from adjacent-chain evidence
 - speculation
+
+Use Evidence Tier 1-6 to grade the source behind each claim. Use `confirmed`, `likely inferred`, `weak`, `disputed`, or `needs refresh` to describe the claim state.
 
 Use current, source-backed information whenever possible. For public companies, prefer annual reports, quarterly reports, earnings-call transcripts, investor presentations, official announcements, and credible industry publications before market commentary.
 
