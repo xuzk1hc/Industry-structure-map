@@ -25,18 +25,33 @@ Every important bottleneck should be tested with three buckets:
 
 If one bucket is missing, say so.
 
-## Claim Labels
+## Claim State Labels
 
-Label major claims:
+Use this exact claim-state set for major claims:
 
-- Confirmed: direct evidence supports the claim.
-- Strongly inferred: several high-quality sources point to it, but no direct disclosure exists.
-- Weakly inferred: plausible, but depends on one indirect source or old evidence.
-- Speculative: useful hypothesis, not yet evidence-backed.
-- Disputed: sources conflict.
-- Stale: evidence is older than the current cycle and needs refresh.
+| Claim state | Meaning |
+|---|---|
+| confirmed | Direct evidence supports the claim |
+| strongly inferred | Several high-quality sources point to it, but no direct disclosure exists |
+| weakly inferred | Plausible, but depends on one indirect source, old evidence, or adjacent-chain inference |
+| speculative | Useful hypothesis, not yet evidence-backed |
+| disputed | Sources conflict |
+| stale | Evidence is older than the relevant industry cycle or has not been refreshed |
 
-Evidence tier grades the source. Claim label grades what can be asserted from that source. Keep them separate.
+Evidence tier grades the source. Claim state grades what can be asserted from that source. Keep them separate.
+
+## Bottleneck Heat Labels
+
+Use this exact bottleneck-heat set:
+
+| Bottleneck heat | Meaning |
+|---|---|
+| Critical | Likely to constrain system ramp now or within the stated outlook window |
+| High | Plausible constraint, but timing, severity, or evidence is less certain |
+| Watchlist | Structurally important, but not yet proven as a binding constraint |
+| Not bottleneck | Important node, but evidence points to ample capacity, easy substitution, or weak demand proof |
+
+Do not use `None` for a reviewed bottleneck. Use `Not bottleneck` when a candidate node was examined and rejected as a bottleneck.
 
 ## Supplier/Customer Relationship Rules
 
@@ -77,9 +92,9 @@ A bottleneck thesis is weaker when:
 
 Use short source IDs in the report body and full details in the ledger.
 
-| ID | Source | Date | Evidence tier | Claim supported | Notes |
-|---|---|---|---|---|---|
-| E01 | Company annual report / earnings call / report title | YYYY-MM-DD | Tier 1-6 |  |  |
+| ID | Source | Date | Evidence tier | Claim state | Claim supported | Method / metric note | Notes |
+|---|---|---|---|---|---|---|---|
+| E01 | Company annual report / earnings call / report title | YYYY-MM-DD | Tier 1-6 | confirmed / strongly inferred / weakly inferred / speculative / disputed / stale |  | Calculation method if a metric is used |  |
 
 ## Optional Quantitative Bottleneck Signals
 
@@ -87,14 +102,28 @@ Use quantitative support when available:
 
 | Signal | Use | Rule |
 |---|---|---|
-| Supplier HHI | Measures concentration of supply or revenue share | Use only with sourced share data; otherwise mark unknown |
-| Capacity utilization | Shows whether capacity is likely binding | Use disclosed utilization, shipment/capacity data, or credible estimates only |
-| ASP trend, latest four quarters | Shows scarcity or commoditization pressure | Use company disclosure or reputable market data |
+| Supplier concentration | Measures supply concentration | Prefer qualitative `high / medium / low / unknown` unless share data supports a calculation |
+| HHI | Measures market concentration using share squared sum | Use only with sourced share data and show method plus evidence ID. If only top-N shares are known, label it `top-N concentration proxy` or `HHI lower-bound estimate`; never present it as full-market HHI |
+| Capacity utilization | Shows whether capacity is likely binding | Use disclosed utilization, shipment/capacity data, or credible estimates only; include method and evidence ID when numeric |
+| ASP trend, latest four quarters | Shows scarcity or commoditization pressure | Use company disclosure or reputable market data; include source and period |
 | Qualification cycle, months | Shows customer lock-in and ramp friction | Use disclosed qualification timelines or credible industry reporting |
 | Lead time / allocation signal | Shows near-term shortage or easing | Use official comments, credible channel checks, or trade reporting |
 | Capex / ramp trigger | Shows when bottleneck could break | Use disclosed capex, tool delivery, or capacity-ramp announcements |
 
-If a metric is unavailable, write `unknown`. Do not invent precision.
+If a metric is unavailable, write `unknown`. Do not invent precision. Every numeric metric must include `method + evidence ID`.
+
+## Source Freshness And Degradation
+
+Every report must state an evidence cutoff.
+
+If live or current source access is unavailable:
+
+- still map the product structure if the structure is stable enough
+- set evidence cutoff to `not refreshed`
+- add source freshness status `stale` or `needs refresh`
+- downgrade supplier and customer relationships to `weakly inferred` or `speculative` unless direct evidence is already available in context
+- do not label any new commercial relationship as `confirmed`
+- keep the Evidence Ledger non-render unless the user explicitly asks for visible citations
 
 ## Cross-Verification Matrix
 

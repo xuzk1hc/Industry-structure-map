@@ -21,6 +21,8 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 
 **Evidence cutoff:** [Date of source refresh.]
 
+**Source freshness:** [refreshed / not refreshed / stale / needs refresh]
+
 **Mode:** [interactive with scope confirmation / one-pass with stated assumptions]
 
 ## Visible HTML Requirements
@@ -28,7 +30,7 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Final HTML must look like a long-form consulting infographic, not a Markdown document.
 - Visible text should be in [target language].
 - Do not render this Render Brief, Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs.
-- Do not render Node Render Data or Edge Render Data as raw tables. Use them only to create visual nodes, arrows, badges, and hidden QA metadata.
+- Do not render Node Production Data or Edge Render Data as raw tables. Use them only to create visual nodes, arrows, badges, and hidden QA metadata.
 - Do not place generic explanatory prose under the title unless explicitly specified.
 - Use clear arrows between nodes. The reader should be able to follow the chain without reading tables.
 - Prefer a hand-laid SVG for the main flowchart when relationships are complex.
@@ -39,6 +41,8 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Show listed companies with logo or wordmark plus ticker where practical. Show unlisted companies with logo/wordmark or a consistent text badge.
 - If technical routes diverge, show route branches with distinct colors or route labels and explain `替代路线影响` in control-point cards.
 - Use Evidence Tier 1-6 in source data. Do not use legacy letter source labels.
+- Use claim-state and bottleneck-heat labels from `evidence-standard.md`.
+- If source freshness is `not refreshed`, do not render any newly introduced supplier/customer claim as confirmed.
 
 ## Scope Confirmation Gate
 
@@ -101,17 +105,17 @@ flowchart TB
   INTEGRATION --> CUSTOMER2
 ```
 
-## Non-Render Data: Node Render Data
+## Non-Render Data: Node Production Data
 
-| Node ID | Layer | Node label | Node type | Global leaders | Logo / ticker hints | Route ID | Customers / next node | Bottleneck heat | Evidence tier | Evidence hooks |
-|---|---|---|---|---|---|---|---|---|---|---|
-| [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Companies] | [Logo or wordmark + ticker where practical] | [R1/R2/base/none] | [Nodes/customers] | [Critical/High/Watchlist/None] | [Tier 1-6] | [E01] |
+| Node ID | Layer | Node label | Node type | Function / role | Inputs | Outputs | Global leaders | Regional leaders | Logo / ticker hints | Route ID | Customers / next node | Competitors / substitutes | Bottleneck heat | Claim state | Source freshness | Evidence tier | Evidence hooks |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| [ID] | [Layer] | [Label] | [Input/component/product/platform/customer] | [Role in final product] | [Required inputs] | [Delivered outputs] | [Companies] | [Regional challengers] | [Logo or wordmark + ticker where practical] | [R1/R2/base/none] | [Nodes/customers] | [Substitutes] | [Critical/High/Watchlist/Not bottleneck] | [confirmed/strongly inferred/weakly inferred/speculative/disputed/stale] | [refreshed/not refreshed/stale/needs refresh] | [Tier 1-6] | [E01] |
 
 ## Non-Render Data: Edge Render Data
 
-| From | To | Relationship type | Render style | Route ID | Meaning | Evidence tier | Evidence hooks |
-|---|---|---|---|---|---|---|---|
-| [Node A] | [Node B] | [physical input / integration / supplier / customer / qualification / substitute] | [solid / dashed / red / route-color] | [R1/R2/base/none] | [Short explanation] | [Tier 1-6] | [E01] |
+| From | To | Relationship type | Render style | Route ID | Meaning | Claim state | Evidence tier | Evidence hooks |
+|---|---|---|---|---|---|---|---|---|
+| [Node A] | [Node B] | [physical input / integration / supplier / customer / qualification / substitute] | [solid / dashed / red / route-color] | [R1/R2/base/none] | [Short explanation] | [confirmed/strongly inferred/weakly inferred/speculative/disputed/stale] | [Tier 1-6] | [E01] |
 
 ## Visible Block 3: Commercial Control-Point Cards
 
@@ -125,9 +129,9 @@ Render these as compact cards, not as a visible table. Use two columns on deskto
 
 Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not render it as a wide card grid.
 
-| Rank | Node | Bottleneck thesis | Constraint type | Global leaders | Quant signals | Evidence tier | Breaker |
-|---|---|---|---|---|---|---|---|
-| 1 | [Node] | [Thesis] | [Capacity/yield/qualification/etc.] | [Companies] | [HHI / utilization / ASP trend / qualification cycle if available; unknown if not] | [Tier 1-6] | [What would weaken it] |
+| Rank | Node | Bottleneck heat | Bottleneck thesis | Constraint type | Global leaders | Quant signals | Evidence tier | Breaker |
+|---|---|---|---|---|---|---|---|---|
+| 1 | [Node] | [Critical/High/Watchlist/Not bottleneck] | [Thesis] | [Capacity/yield/qualification/etc.] | [Companies] | [concentration / HHI proxy / utilization / ASP trend / qualification cycle if available; unknown if not; include method + evidence ID for numeric metrics] | [Tier 1-6] | [What would weaken it] |
 
 ## Visible Block 5: Compact Process-Flow Ribbon
 
@@ -145,14 +149,14 @@ flowchart LR
 
 ## Non-Render Data: Evidence Ledger
 
-| ID | Source | Date | Evidence tier | Claim supported | Notes |
-|---|---|---|---|---|---|
-| E01 | [Source title / company / document] | [YYYY-MM-DD] | [Tier 1-6] | [Claim] | [Notes] |
+| ID | Source | Date | Evidence tier | Claim state | Claim supported | Method / metric note | Notes |
+|---|---|---|---|---|---|---|---|
+| E01 | [Source title / company / document] | [YYYY-MM-DD] | [Tier 1-6] | [confirmed/strongly inferred/weakly inferred/speculative/disputed/stale] | [Claim] | [Calculation method if a metric is used] | [Notes] |
 
 ## Renderer Notes
 
-- Treat the Mermaid graph as the source of the visual layout.
-- Use node render data for visual node/card contents and styling; do not display the node table itself.
+- Treat the Mermaid graph as a source spec or layout brief. Use custom SVG/HTML when the final long infographic needs precise styling.
+- Use node production data for visual node/card contents and styling; do not display the node table itself.
 - Use edge render data for line styles and labels; do not display the edge table itself.
 - Use evidence hooks only for hidden QA or optional hover citations; do not show the full Evidence Ledger.
 - Keep detailed prose out of the rendered graph.

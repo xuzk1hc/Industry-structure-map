@@ -16,13 +16,13 @@ Optional:
 |---|---|---|---|
 | generation | string | current generation | Product generation, chemistry, architecture, or standard |
 | geography | string | global | Global, China, US, Japan, Korea, Europe, Taiwan, or another relevant scope |
-| time_horizon | string | current state plus 12-24 months | Bottleneck outlook horizon |
+| time_horizon | string | sector-appropriate outlook | Bottleneck outlook horizon; start from 12-24 months only when the sector cycle does not imply a better window |
 | depth | enum | full | `short`, `full`, or `deep_dive` |
 | target_language | string | user language | Visible report language |
 | output_mode | enum | interactive | `interactive` pauses at the scope confirmation gate; `one_pass` states assumptions and continues |
 | render_style | string | consulting long infographic | Visual style instruction for final HTML rendering |
-| compare_routes | boolean | auto | Whether to identify competing technical routes when material |
-| include_quant_signals | boolean | true | Include HHI, utilization, ASP trend, qualification cycle, or lead-time signals when sourced data exists |
+| compare_routes | enum | auto | `true`, `false`, or `auto`; whether to identify competing technical routes when material |
+| include_quant_signals | boolean | true | Include supplier concentration, HHI only when share data supports it, utilization, ASP trend, qualification cycle, or lead-time signals when sourced data exists |
 | evidence_refresh | string | latest practical source refresh | Source recency requirement |
 
 ## Output Schema
@@ -44,7 +44,7 @@ Final Markdown output:
 | Render Brief | Non-render instruction |
 | Visible HTML Requirements | Non-render instruction |
 | Panoramic Industry + Business Flowchart | Visible, transformed into SVG/HTML graph |
-| Node Render Data | Non-render production data |
+| Node Production Data | Non-render production data |
 | Edge Render Data | Non-render production data |
 | Commercial Control-Point Cards | Visible, transformed into compact cards |
 | Bottleneck Heat Table | Visible, transformed into vertical ranking |
@@ -63,7 +63,34 @@ Use `Evidence Tier 1-6` for source quality:
 - Tier 5: analyst or broker interpretation
 - Tier 6: weak signal
 
-Use separate claim labels such as `confirmed`, `likely inferred`, `weak`, `disputed`, or `needs refresh`.
+Use this exact claim-state set:
+
+- confirmed
+- strongly inferred
+- weakly inferred
+- speculative
+- disputed
+- stale
+
+Use this exact bottleneck-heat set:
+
+- Critical
+- High
+- Watchlist
+- Not bottleneck
+
+Every final output must include evidence cutoff and source freshness status.
+
+## Capability Summary
+
+This skill can:
+
+- decompose product systems into product, component, process, equipment, material, and integration nodes
+- build a graph-first industry-plus-business map
+- separate visible HTML blocks from non-render production data
+- rank bottlenecks with evidence-bound qualitative and optional quantitative signals
+- compare competing technology routes when they materially affect the chain
+- degrade gracefully when live source access is unavailable
 
 ## Examples
 
@@ -73,7 +100,7 @@ HBM:
 product: HBM
 generation: HBM3E/HBM4
 geography: global
-time_horizon: current plus 12-24 months
+time_horizon: sector-appropriate outlook, starting from 12-24 months
 depth: full
 output_mode: interactive
 compare_routes: true

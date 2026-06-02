@@ -6,6 +6,8 @@ Use this file when porting the workflow to Claude Code or another agent runtime 
 
 Default full-report mode should behave like a `user_confirmation` workflow.
 
+If the runtime supports `AskUserQuestion`, plan mode, or a native confirmation tool, use it for the scope confirmation gate.
+
 After product decomposition, stop and show:
 
 - product tree, 3-5 levels

@@ -4,7 +4,7 @@ Use this file when building the actual industry atlas maps.
 
 ## Diagram Rules
 
-Prefer Mermaid diagrams because they survive Markdown-to-HTML rendering.
+Use Mermaid as a portable graph source or layout brief when useful. Mermaid only renders in HTML when the downstream renderer supports Mermaid or loads Mermaid.js.
 
 Use:
 
@@ -37,7 +37,7 @@ Visual encoding:
 
 - solid arrows: physical composition or required integration path
 - dashed arrows: reported, inferred, substitute, customer, or qualification relationships
-- red or explicit `BOTTLENECK` labels: system constraints
+- red or explicit `BOTTLENECK` labels: Critical or High system constraints
 - colored branch labels: competing technology routes or design variants
 - node subtitles: global leaders and key customers
 
@@ -71,8 +71,10 @@ Every important node should be representable as:
 | Route ID | Optional route label such as `R1`, `R2`, or `base route` |
 | Alternative route impact | Whether alternate routes weaken, reinforce, or bypass this node |
 | Bottleneck type | Capacity, yield, qualification, material, tooling, IP, geopolitics, customer dependency, none |
-| Evidence status | Confirmed, likely inferred, weak, disputed, needs refresh |
+| Bottleneck heat | Critical, High, Watchlist, Not bottleneck |
+| Claim state | confirmed, strongly inferred, weakly inferred, speculative, disputed, stale |
 | Evidence tier | Best supporting source tier, using Evidence Tier 1-6 |
+| Source freshness | refreshed, not refreshed, stale, needs refresh |
 | Source hooks | Short source labels tied to the evidence ledger |
 
 ## Link Schema
@@ -88,6 +90,7 @@ Every important edge should be explainable as:
 | Bottleneck risk | Low, medium, high |
 | Route ID | Optional route label for competing technical paths |
 | Route color | Suggested visual color token if routes must be separated |
+| Claim state | confirmed, strongly inferred, weakly inferred, speculative, disputed, stale |
 | Leader companies | Companies controlling or leading the link |
 | Evidence hooks | Source labels tied to the evidence ledger |
 
@@ -228,21 +231,21 @@ Use 4-8 compact cards after the main atlas. Each card should cover one control p
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
-## Node Atlas Table
+## Node Production Data
 
-Use this table for each major layer.
+Use this table for each major layer. It is non-render production data unless transformed into visual nodes or cards.
 
-| Node | Role in final product | Inputs | Outputs | Global leaders | Customers / next node | Competitors or substitutes | Route ID | Bottleneck type | Evidence status |
-|---|---|---|---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |  |  |  |
+| Node | Function / role | Inputs | Outputs | Global leaders | Regional leaders | Customers / next node | Competitors or substitutes | Route ID | Bottleneck type | Bottleneck heat | Claim state | Source freshness |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |  |  |  | Critical / High / Watchlist / Not bottleneck | confirmed / strongly inferred / weakly inferred / speculative / disputed / stale |  |
 
 ## Bottleneck Heat Table
 
 Render this as a vertical top-to-bottom ranking with long, narrow rows and a heat chip on the right. Avoid wide card grids.
 
-| Rank | Node | Bottleneck thesis | Why it could bind | Global leaders | Quant signals | Evidence tier | What would break the thesis |
-|---|---|---|---|---|---|---|---|
-| 1 |  |  |  |  | HHI / utilization / ASP / qualification cycle if available | Tier 1-6 |  |
+| Rank | Node | Bottleneck heat | Bottleneck thesis | Why it could bind | Global leaders | Quant signals | Evidence tier | What would break the thesis |
+|---|---|---|---|---|---|---|---|---|
+| 1 |  | Critical / High / Watchlist / Not bottleneck |  |  |  | concentration / HHI proxy / utilization / ASP / qualification cycle if available | Tier 1-6 |  |
 
 ## Rendering Notes
 
@@ -258,3 +261,4 @@ To help downstream HTML rendering:
 - show listed companies as logo/wordmark plus ticker where practical; use consistent badges for private companies
 - use Evidence Tier 1-6, not legacy letter source labels
 - use route IDs and route colors when technical routes diverge
+- prefer custom SVG/HTML for final long infographics; use Mermaid as a source spec when the renderer cannot directly style it well

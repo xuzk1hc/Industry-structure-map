@@ -9,7 +9,7 @@ The output should feel like a structured industry research poster and a render-r
 - immediately readable from top to bottom
 - richer than a simple upstream/midstream/downstream chart
 - precise enough for serious industry analysis
-- compatible with Markdown-to-HTML rendering
+- compatible with a renderer that can consume Markdown graph specs and production data
 - easy for another AI to transform into a styled visual report
 
 ## Core Layout
@@ -91,7 +91,7 @@ Visible in final HTML:
 Do not render directly:
 
 - Render Brief instructions
-- Node Render Data and Edge Render Data tables unless converting them into visual nodes, arrows, cards, or hidden QA metadata
+- Node Production Data and Edge Render Data tables unless converting them into visual nodes, arrows, cards, or hidden QA metadata
 - Evidence Ledger
 - Renderer Notes
 - source URLs
@@ -114,7 +114,7 @@ Use this order when the user mainly wants a chart:
 1. title
 2. render brief
 3. panoramic industry-plus-business flowchart
-4. node render data
+4. node production data
 5. edge render data
 6. commercial control-point cards
 7. bottleneck heat table
@@ -193,7 +193,7 @@ Keep separate or secondary:
 - Dashed arrow: customer qualification, reported supply, alternative route, substitute, or competitive relation.
 - Red marker: bottleneck.
 - Yellow marker: watchlist bottleneck.
-- Grey marker: weak or unverified relationship.
+- Grey marker: weakly inferred, speculative, stale, or otherwise low-confidence relationship.
 - Blue/green/purple route lines: competing technical routes or design variants. Use only when route divergence matters.
 
 ## Commercial Control-Point Cards
@@ -224,10 +224,10 @@ Use quantitative signals only when sourced data exists.
 Good visible formats:
 
 - small metric chips inside bottleneck rows
-- concise tokens such as `HHI: high`, `utilization: >90%`, `qualification: 12-18 months`
+- concise tokens such as `concentration: high`, `HHI proxy: top-3`, `utilization: >90%`, `qualification: 12-18 months`
 - `unknown` when the metric is material but unavailable
 
-Do not fabricate exact figures for visual polish.
+Do not fabricate exact figures for visual polish. Numeric metrics require method plus evidence ID in non-render data.
 
 ## Full Report Order
 
@@ -235,7 +235,7 @@ Use this order for full reports:
 
 1. title and render brief
 2. panoramic industry-plus-business flowchart
-3. node render data
+3. node production data
 4. edge render data
 5. commercial control-point cards
 6. bottleneck ranking and heatmap

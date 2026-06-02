@@ -11,14 +11,14 @@ Minimum scope fields:
 - product or sector: the actual object being mapped, such as HBM3E, HBM4, LFP battery cells, NMC battery cells, SiC MOSFETs, 1.6T optical modules
 - product boundary: final product, component family, manufacturing process, or full ecosystem
 - geography: global by default; add China, US, Japan, Korea, Europe, or Taiwan if relevant
-- horizon: current state plus 12-24 month bottleneck outlook by default
-- output depth: short map, full Markdown report, or company drilldown
-- mode: interactive by default for full reports; one-pass only when the user asks to skip confirmation
+- horizon: sector-appropriate bottleneck outlook; use 12-24 months as a starting point, then adjust for capacity cycle, qualification cycle, or product iteration speed
+- output depth: short map, full Markdown report, deep dive, or company drilldown
+- mode: interactive by default for full or deep-dive visual reports; one-pass only when the user asks to skip confirmation
 
 If the user gives only a sector name, use:
 
 - geography: global
-- horizon: current state plus 12-24 months
+- horizon: sector-appropriate outlook, usually starting from current state plus 12-24 months
 - output: full Markdown atlas
 - evidence: current public sources where available
 
@@ -76,7 +76,7 @@ Examples:
 
 ## 3.5 Scope Confirmation Gate
 
-Pause after product decomposition for full report or complex visual-map tasks.
+Pause after product decomposition for `full` or `deep_dive` visual-map tasks.
 
 Show a brief structured summary:
 
@@ -87,6 +87,8 @@ Show a brief structured summary:
 - assumptions that will affect the graph
 
 Ask the user to confirm or adjust before proceeding to atlas design.
+
+For `short` outputs, do not pause unless the user asks for confirmation.
 
 If the user explicitly asks for a one-pass answer, skip the pause but state the product-tree assumptions before continuing.
 
@@ -194,21 +196,22 @@ Rank candidate bottlenecks across:
 
 Optional quantitative signals, only when data is available:
 
-- supplier concentration HHI
+- supplier concentration, usually `high / medium / low / unknown`
+- HHI only when share data supports the calculation
 - capacity utilization estimate
 - ASP trend over the latest four quarters
 - qualification or certification cycle in months
 - lead time, allocation, or booked-capacity signal
 - capex, tool delivery, or capacity-ramp trigger
 
-If data is unavailable, write `unknown` or omit the metric. Do not estimate precise figures without evidence.
+If data is unavailable, write `unknown` or omit the metric. Do not estimate precise figures without evidence. Numeric metrics require method plus evidence ID; top-N share math must be labeled as a proxy or lower-bound estimate, not full-market HHI.
 
-Use heat labels for bottleneck severity:
+Use the bottleneck-heat labels from [evidence-standard.md](evidence-standard.md):
 
-- Critical bottleneck: likely to constrain system ramp now or within 12-24 months, with strong evidence.
-- High bottleneck: plausible constraint, but timing or evidence is less certain.
+- Critical: likely to constrain system ramp now or within the stated outlook window.
+- High: plausible constraint, but timing or evidence is less certain.
 - Watchlist: structurally important, but not yet proven as the binding constraint.
-- Weak or false bottleneck: important node, but ample capacity, easy substitution, or weak demand proof.
+- Not bottleneck: important node, but ample capacity, easy substitution, or weak demand proof.
 
 ## 9. Evidence Cross-Check
 
@@ -220,15 +223,18 @@ For each major bottleneck, seek at least three angles:
 - industry evidence: trade press, industry association data, credible market research, capacity news
 - cross-chain evidence: upstream supplier and downstream customer describe the same constraint
 
-Output the evidence state clearly:
+Output claim state using the exact labels from [evidence-standard.md](evidence-standard.md):
 
 - confirmed
-- likely inferred
-- unverified
+- strongly inferred
+- weakly inferred
+- speculative
 - disputed
-- stale and needs refresh
+- stale
 
 Grade source quality with Evidence Tier 1-6 from [evidence-standard.md](evidence-standard.md). Do not use legacy letter source labels.
+
+If live source access is unavailable, follow the degradation rules in [evidence-standard.md](evidence-standard.md): set evidence cutoff to `not refreshed`, treat source freshness as stale, and do not introduce new confirmed supplier/customer claims.
 
 ## 10. Report Assembly
 
@@ -237,6 +243,7 @@ The final Markdown should include:
 - executive summary
 - scope and assumptions
 - final-product definition
+- evidence cutoff and source freshness status
 - panoramic industry-chain atlas that merges product structure and business relationships
 - process-flow ribbon or focused process-chain map
 - commercial control-point map

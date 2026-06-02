@@ -36,6 +36,7 @@ Instead, build a product-aware atlas:
 - For the final Markdown output scaffold, read [references/report-template.md](references/report-template.md).
 - For portable input/output fields, examples, and agent-neutral contract details, read [references/io-contract.md](references/io-contract.md).
 - For Claude Code-style confirmation behavior and portability notes, read [references/claude-code-adapter.md](references/claude-code-adapter.md).
+- For a compact end-to-end example, read [references/hbm-mini-example.md](references/hbm-mini-example.md).
 
 ## Required Workflow
 
@@ -58,7 +59,7 @@ Use this order unless the user explicitly requests a narrower task:
 - For visual report requests, do not make company-only maps. Product/component/process nodes must be the primary structure; companies are labels, role cards, or relationship overlays.
 - The Markdown artifact is an instruction/specification for the next renderer, not the visible report body.
 - Clearly mark visible sections and non-render sections. The renderer must not place Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs into the final HTML.
-- Node Render Data, Edge Render Data, and other production tables are inputs for image/HTML generation only. They must not appear as raw tables in the final rendered HTML unless explicitly transformed into visual nodes, arrows, cards, or hidden QA metadata.
+- Node Production Data, Edge Render Data, and other production tables are inputs for image/HTML generation only. They must not appear as raw tables in the final rendered HTML unless explicitly transformed into visual nodes, arrows, cards, or hidden QA metadata.
 - Use the user's target language for visible labels. For Chinese reports, all visible headings, card labels, node names, and legends should be Chinese.
 - Avoid decorative explanatory prose in the visible hero. Use title, subtitle only if necessary, and compact metric chips.
 - Bottleneck heatmaps should default to a top-to-bottom ranking layout: long, narrow horizontal rows or a slim table, not a wide grid of cards. Each row should show rank, node, bottleneck judgement, constraint type, and heat level.
@@ -66,11 +67,13 @@ Use this order unless the user explicitly requests a narrower task:
 - Company annotations should use logo or wordmark plus ticker for listed companies whenever practical. For private companies, use a logo/wordmark or consistent text badge; do not invent tickers.
 - Use Evidence Tier 1-6 for source quality. Do not use legacy letter source labels.
 - Keep evidence quality separate from bottleneck heat. Evidence Tier 1-6 grades sources; bottleneck heat grades system constraint severity.
-- Quantitative bottleneck signals are optional and evidence-bound. Use HHI, capacity utilization, ASP trend, qualification cycle, lead time, or capex/ramp signals only when data is available; otherwise mark `unknown` and do not guess.
+- Every output must include an evidence cutoff. If current source access is unavailable, set it to `not refreshed` and apply the degradation rules in [references/evidence-standard.md](references/evidence-standard.md).
+- Use the exact claim-state and bottleneck-heat vocabularies from [references/evidence-standard.md](references/evidence-standard.md).
+- Quantitative bottleneck signals are optional and evidence-bound. Use supplier concentration, HHI, capacity utilization, ASP trend, qualification cycle, lead time, or capex/ramp signals only when data is available; otherwise mark `unknown` and do not guess. Numeric metrics require method plus evidence ID.
 - When competing technical routes matter, show route branches in the main graph and add `替代路线影响` to control-point cards.
 - Never claim supplier/customer relationships without labeling whether they are confirmed, inferred, or speculative.
 - Never present a company as a bottleneck merely because it is a market leader; explain the actual constraint.
-- Every major node must have an input, output, role in final-product formation, company leaders, and evidence status.
+- Every major node must have an input, output, role in final-product formation, company leaders, claim state, and source freshness.
 - Every major bottleneck call must include at least one falsification test.
 - If live source access is unavailable, state that source verification is incomplete and mark claims as needing refresh.
 
@@ -87,7 +90,7 @@ For a short answer, still include:
 - strongest evidence and weakest assumption
 - what to verify next
 
-## Evidence Discipline
+## Source Category Discipline
 
 Always separate:
 
@@ -98,7 +101,9 @@ Always separate:
 - inference from adjacent-chain evidence
 - speculation
 
-Use Evidence Tier 1-6 to grade the source behind each claim. Use `confirmed`, `likely inferred`, `weak`, `disputed`, or `needs refresh` to describe the claim state.
+These are source or reasoning categories, not claim-state labels.
+
+Use Evidence Tier 1-6 to grade the source behind each claim. Use the claim-state labels defined in [references/evidence-standard.md](references/evidence-standard.md).
 
 Use current, source-backed information whenever possible. For public companies, prefer annual reports, quarterly reports, earnings-call transcripts, investor presentations, official announcements, and credible industry publications before market commentary.
 
@@ -119,7 +124,7 @@ Default final structure:
 1. graph render brief
 2. one panoramic industry-plus-business flowchart
 3. compact process ribbon if useful
-4. non-render node render table
+4. non-render node production table
 5. non-render edge render table
 6. compact commercial control-point cards
 7. vertical bottleneck heat ranking
