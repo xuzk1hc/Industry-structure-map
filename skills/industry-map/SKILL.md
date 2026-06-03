@@ -63,7 +63,9 @@ Use this order unless the user explicitly requests a narrower task:
 - Renderers must use a visible-section allowlist, not all Markdown headings. Do not create final HTML sections from Scope Confirmation Gate, Node Production Data, Edge Render Data, Evidence Ledger, Renderer Notes, JSON blocks, raw Markdown backups, source URL lists, observation tables, or other machine-readable sections.
 - Layer or swimlane metadata must not become a standalone visible section such as `产业分层节点`. Use it only as background lanes, grouping labels, or layout metadata inside the main graph unless the user explicitly asks for a technical appendix.
 - Use the user's target language for visible labels. For Chinese reports, all visible headings, card labels, node names, and legends should be Chinese.
-- Avoid decorative explanatory prose in the visible hero. Use title, subtitle only if necessary, and compact metric chips.
+- Avoid decorative explanatory prose in the visible hero. The first screen should usually contain only the main title, optional evidence-cutoff text, and compact chips/tags. Do not place a long thesis sentence, route explanation, or time-window paragraph under the title unless the user explicitly asks for it.
+- In the panoramic graph, arrows and connector lines must never cover node titles, company names, badges, tickers, key metrics, or bottleneck labels. Use routed edges, lane gutters, anchor points on node borders, and enough spacing; if overlap remains, split the graph or move detail into a drilldown.
+- Place the compact product-formation/process flow directly below the panoramic industry-plus-business flowchart when included. Do not bury it after all business cards and bottleneck tables unless the user requests that order.
 - Bottleneck heatmaps should default to a top-to-bottom ranking layout: long, narrow horizontal rows or a slim table, not a wide grid of cards. Each row should show rank, node, bottleneck judgement, constraint type, and heat level.
 - Commercial control points should be compact and easy to scan. Prefer two-column cards with only short fields such as `控制`, `龙头`, and `瓶颈`; avoid paragraph-style explanations inside these cards.
 - Company annotations in visible HTML should use logo or wordmark plus ticker badges for listed companies whenever practical. For private companies, use a logo/wordmark or consistent text badge; do not invent tickers. Avoid plain comma-separated company lists in visible graph nodes or cards when badge data is available.
@@ -127,8 +129,8 @@ Default Markdown production structure. This is not the final HTML render order:
 1. graph render brief
 2. one panoramic industry-plus-business flowchart
 3. compact process ribbon if useful
-4. non-render node production table
-5. non-render edge render table
-6. compact commercial control-point cards
-7. vertical bottleneck heat ranking
+4. compact commercial control-point cards
+5. vertical bottleneck heat ranking
+6. non-render node production table
+7. non-render edge render table
 8. non-render evidence ledger

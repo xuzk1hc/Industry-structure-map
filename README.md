@@ -44,9 +44,9 @@ Visible report blocks normally include:
 
 - title area with compact metric chips
 - one panoramic industry plus business graph
+- compact product-formation/process ribbon directly below the main graph when useful
 - compact commercial control-point cards
 - top-to-bottom bottleneck heat ranking
-- optional process-flow ribbon or drilldown
 - legend for route colors, claim states, and bottleneck heat
 
 Non-render production data may also be included in the Markdown brief, but it must not be shown directly in the final HTML:
@@ -97,6 +97,9 @@ Layer or swimlane metadata is only layout metadata. It should become background 
 - Do not render evidence ledgers, source URLs, raw JSON, renderer notes, or node/edge production tables as visible report sections.
 - Do not create standalone inventory sections such as `产业分层节点` unless the user explicitly asks for a technical appendix.
 - Use the user's target language for visible headings, nodes, cards, legends, and labels.
+- Keep the title area compact: main title, optional evidence-cutoff text, and chips/tags only by default. Do not place a long explanatory paragraph under the title.
+- Route graph arrows around text and badges. Lines must not cover node labels, company logos, ticker badges, metric chips, or bottleneck tags.
+- Place the product-formation/process flow directly below the panoramic graph when included.
 - For listed companies, prefer logo or wordmark plus ticker badge. For private companies, use logo or consistent text badge without inventing stock codes.
 - Keep commercial control-point cards compact: `控制`, `龙头`, `瓶颈`, and `替代路线影响` when relevant.
 - Bottleneck heatmaps should default to a vertical top-to-bottom ranking with long, narrow rows.

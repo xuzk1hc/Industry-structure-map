@@ -44,11 +44,11 @@ Final Markdown output:
 | Render Brief | Non-render instruction |
 | Visible HTML Requirements | Non-render instruction |
 | Panoramic Industry + Business Flowchart | Visible, transformed into SVG/HTML graph |
+| Compact Process-Flow Ribbon | Visible if useful; place directly below the panoramic graph |
 | Node Production Data | Non-render production data |
 | Edge Render Data | Non-render production data |
 | Commercial Control-Point Cards | Visible, transformed into compact cards |
 | Bottleneck Heat Table | Visible, transformed into vertical ranking |
-| Compact Process-Flow Ribbon | Visible if useful |
 | Company Badge Data | Non-render production data for logo/ticker badges |
 | Evidence Ledger | Non-render source QA |
 | Renderer Notes | Non-render instruction |
@@ -57,9 +57,9 @@ Final HTML allowlist:
 
 - Main Title
 - Panoramic Industry + Business Flowchart
+- Compact Process-Flow Ribbon
 - Commercial Control-Point Cards
 - Bottleneck Heat Table
-- Compact Process-Flow Ribbon
 - Small Legend
 
 Final HTML denylist:

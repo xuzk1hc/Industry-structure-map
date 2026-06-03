@@ -24,6 +24,8 @@ Node and edge tables are production data. They should support diagram constructi
 
 Layer and swimlane metadata is also production data. It should define graph grouping, not a standalone visible section.
 
+When a Mermaid diagram is converted into a custom SVG/HTML infographic, line routing must be checked manually. Arrows and connector lines must not cover text, company badges, ticker chips, metric chips, or bottleneck labels.
+
 ## Panoramic Atlas Rules
 
 Use this when the user wants an infographic-like report.
@@ -42,6 +44,15 @@ Visual encoding:
 - red or explicit `BOTTLENECK` labels: Critical or High system constraints
 - colored branch labels: competing technology routes or design variants
 - node subtitles: global leaders and key customers
+- company badges: logo/wordmark plus ticker for listed companies when available
+
+Legibility rules:
+
+- route arrows to node borders or explicit anchor points
+- reserve gutters between lanes for connectors
+- avoid straight-line crossings through node bodies
+- keep edge labels outside nodes
+- split the graph into a main overview plus drilldown when line crossings make the main atlas unreadable
 
 Recommended swimlanes:
 
@@ -53,6 +64,8 @@ Recommended swimlanes:
 6. bottom data strip: market size, bottleneck metrics, share, lead time, adoption, or growth data
 
 Do not render a standalone layer inventory. If a table describes layers, use it only to place graph lanes and preserve relationships.
+
+When a compact process-flow ribbon is useful, place it directly below the panoramic atlas in the final HTML.
 
 ## Node Schema
 
@@ -277,6 +290,7 @@ To help downstream HTML rendering:
 - keep non-render node and edge tables out of final HTML unless transformed into visual graph elements
 - keep company badge tables, raw JSON, source lists, and raw Markdown backups out of final HTML
 - show listed companies as logo/wordmark plus ticker where practical; use consistent badges for private companies
+- check final edge routing so arrows do not cover words, badges, tickers, or metrics
 - use Evidence Tier 1-6, not legacy letter source labels
 - use route IDs and route colors when technical routes diverge
 - prefer custom SVG/HTML for final long infographics; use Mermaid as a source spec when the renderer cannot directly style it well

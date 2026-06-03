@@ -32,8 +32,9 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 - Do not render this Render Brief, Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs.
 - Do not render Node Production Data or Edge Render Data as raw tables. Use them only to create visual nodes, arrows, badges, and hidden QA metadata.
 - Do not build navigation or section numbering from all Markdown headings. Use only the visible-section allowlist below.
-- Do not place generic explanatory prose under the title unless explicitly specified.
+- Do not place generic explanatory prose under the title unless explicitly specified. The title area should normally contain only the main title, optional evidence-cutoff text, and compact chips/tags.
 - Use clear arrows between nodes. The reader should be able to follow the chain without reading tables.
+- Arrows and connector lines must not cover node titles, labels, company badges, tickers, metric chips, or bottleneck labels. Use routed edges, gutters, node-border anchors, and spacing; if overlap remains, split the graph or move detail into a drilldown.
 - Prefer a hand-laid SVG for the main flowchart when relationships are complex.
 - Use HTML/CSS cards only for supporting blocks such as commercial control points, bottleneck heat table, and process ribbon.
 - Show peer companies as parallel nodes feeding into a shared downstream node; never draw them as a sequential chain unless that is literally true.
@@ -52,11 +53,11 @@ The final HTML may render only these blocks:
 
 | Block | Render rule |
 |---|---|
-| Main Title | Visible title, optional subtitle, compact chips |
+| Main Title | Visible title, optional evidence-cutoff text, compact chips; no long subtitle paragraph by default |
 | Panoramic Industry + Business Flowchart | Main SVG/HTML graph with arrows and swimlanes |
+| Compact Process-Flow Ribbon | Optional if it clarifies how the product is formed; place directly below the panoramic flowchart |
 | Commercial Control-Point Cards | Compact card grid using `控制 / 龙头 / 瓶颈 / 替代路线影响` |
 | Bottleneck Heat Table | Vertical ranking with long, narrow rows |
-| Compact Process-Flow Ribbon | Optional if it clarifies how the product is formed |
 | Small Legend | Optional arrow, heat, and route legend |
 
 Forbidden in final HTML:
@@ -94,7 +95,7 @@ Use this section before final atlas generation in interactive mode. Do not rende
 | Field | Visible content |
 |---|---|
 | Title | [Short visible title] |
-| Subtitle | [Usually omit. Use only if required and keep it under one short line.] |
+| Subtitle | [Usually omit. Do not use a long explanatory route/time-window paragraph.] |
 | Chips | [3-5 compact tags or metrics] |
 
 ## Visible Block 2: Panoramic Industry + Business Flowchart
@@ -138,6 +139,24 @@ flowchart TB
   INTEGRATION --> CUSTOMER2
 ```
 
+Render rule: convert the graph to SVG/HTML with edge routing that keeps all arrows and labels outside text and badge areas. Use company badge data to show listed-company logo/wordmark plus ticker badges inside or next to relevant nodes.
+
+## Visible Block 3: Compact Product-Formation / Process-Flow Ribbon
+
+Place this block directly below the panoramic flowchart when it clarifies how the product is formed.
+
+```mermaid
+flowchart LR
+  RAW["[Raw input]"]
+  STEP1["[Process 1]"]
+  STEP2["[Process 2]"]
+  STEP3["[Process 3]"]
+  FINAL["[Finished product]"]
+  CUSTOMER["[Customer validation / integration]"]
+
+  RAW --> STEP1 --> STEP2 --> STEP3 --> FINAL --> CUSTOMER
+```
+
 ## Non-Render Data: Node Production Data
 
 | Node ID | Layer | Node label | Node type | Function / role | Inputs | Outputs | Global leaders | Regional leaders | Logo / ticker hints | Route ID | Customers / next node | Competitors / substitutes | Bottleneck heat | Claim state | Source freshness | Evidence tier | Evidence hooks |
@@ -158,7 +177,7 @@ Use this table to render visible company badges. Do not display this table itsel
 |---|---|---|---|---|---|---|---|---|
 | [Node A] | [Node B] | [physical input / integration / supplier / customer / qualification / substitute] | [solid / dashed / red / route-color] | [R1/R2/base/none] | [Short explanation] | [confirmed/strongly inferred/weakly inferred/speculative/disputed/stale] | [Tier 1-6] | [E01] |
 
-## Visible Block 3: Commercial Control-Point Cards
+## Visible Block 4: Commercial Control-Point Cards
 
 Render these as compact cards, not as a visible table. Use two columns on desktop and one column on mobile.
 
@@ -166,27 +185,13 @@ Render these as compact cards, not as a visible table. Use two columns on deskto
 |---|---|---|---|---|---|---|
 | [Control point] | [Power or profit pool in one phrase] | [Logo/ticker badges or company names] | [Constraint in one phrase] | [Bypass / weaken / reinforce / none] | [Optional short note] | [E01, E02] |
 
-## Visible Block 4: Bottleneck Heat Table
+## Visible Block 5: Bottleneck Heat Table
 
 Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not render it as a wide card grid.
 
 | Rank | Node | Bottleneck heat | Bottleneck thesis | Constraint type | Global leaders | Quant signals | Evidence tier | Breaker |
 |---|---|---|---|---|---|---|---|---|
 | 1 | [Node] | [Critical/High/Watchlist/Not bottleneck] | [Thesis] | [Capacity/yield/qualification/etc.] | [Companies] | [concentration / HHI proxy / utilization / ASP trend / qualification cycle if available; unknown if not; include method + evidence ID for numeric metrics] | [Tier 1-6] | [What would weaken it] |
-
-## Visible Block 5: Compact Process-Flow Ribbon
-
-```mermaid
-flowchart LR
-  RAW["[Raw input]"]
-  STEP1["[Process 1]"]
-  STEP2["[Process 2]"]
-  STEP3["[Process 3]"]
-  FINAL["[Finished product]"]
-  CUSTOMER["[Customer validation / integration]"]
-
-  RAW --> STEP1 --> STEP2 --> STEP3 --> FINAL --> CUSTOMER
-```
 
 ## Non-Render Data: Evidence Ledger
 
@@ -203,6 +208,7 @@ flowchart LR
 - Use evidence hooks only for hidden QA or optional hover citations; do not show the full Evidence Ledger.
 - Keep detailed prose out of the rendered graph.
 - If converting Mermaid to custom SVG, preserve the node order, edge direction, dashed commercial relationships, and bottleneck styling.
+- If converting Mermaid to custom SVG, redraw edges manually when necessary so arrows never obscure text, logos, ticker badges, or metric chips.
 - Company visuals should prefer logo/wordmark plus ticker for listed companies and logo/wordmark or text badge for private companies.
 - Preserve route IDs and route colors when technical routes diverge.
 - Treat missing quantitative indicators as `unknown`; do not invent numbers.

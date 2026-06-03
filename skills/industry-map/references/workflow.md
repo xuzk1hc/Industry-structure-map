@@ -138,7 +138,7 @@ For consulting-style Markdown or HTML reports, build the visual hierarchy before
 Default visual system:
 
 1. Panoramic industry-chain atlas: one main diagram that merges product structure and business relationships.
-2. Process-flow ribbon: a compact manufacturing sequence below or after the main diagram.
+2. Process-flow ribbon: a compact manufacturing sequence directly below the main diagram when useful.
 3. Commercial control-point cards: 4-8 compact cards explaining where power, margin, qualification, and bottlenecks sit.
 4. Node atlas table: dense facts that do not fit inside the diagram.
 5. Bottleneck heatmap: rank constraints and falsification tests.
@@ -148,6 +148,7 @@ Main diagram rule:
 - The main diagram should use product/component/process nodes as the skeleton.
 - Companies should appear as node labels, leader lists, side cards, or dashed relationship overlays.
 - Process details should appear only as a compact centerline unless the user asks for a process deep dive.
+- Arrows and connector lines must not cover labels, company badges, tickers, metrics, or bottleneck markers. Treat overlap as a render failure and route around node content.
 
 When the report needs to resemble a long-form infographic, read [visual-report-pattern.md](visual-report-pattern.md).
 
@@ -245,7 +246,7 @@ The final Markdown production brief should include:
 - final-product definition
 - evidence cutoff and source freshness status
 - panoramic industry-chain atlas that merges product structure and business relationships
-- process-flow ribbon or focused process-chain map
+- process-flow ribbon or focused process-chain map directly below the panoramic atlas when included
 - commercial control-point map
 - node-by-node atlas table
 - bottleneck ranking

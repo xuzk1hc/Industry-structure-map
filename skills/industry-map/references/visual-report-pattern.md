@@ -27,9 +27,10 @@ Use one primary visual block plus supporting render data:
    - Commercial control-point cards.
    - Bottleneck heat table.
 
-3. **Optional compact process ribbon**
+3. **Optional compact product-formation/process ribbon**
    - Only include enough process flow for the renderer to understand the sequence.
    - Do not let process detail dominate the main graph.
+   - When included, place it directly below the panoramic industry-plus-business flowchart.
 
 ## Preferred HTML Rendering Method
 
@@ -58,9 +59,11 @@ Recommended canvas:
 - compact centered title
 - small chips under title
 - one large SVG flow map as the first major content block
+- compact product-formation/process ribbon directly under the main map when useful
 - two-column commercial-control cards
 - dense bottleneck heat table
-- compact process ribbon at the end
+
+Avoid hero paragraphs. The top title area should not include a long thesis sentence, route explanation, or time-window paragraph unless the user explicitly requests it.
 
 ## Primary Output Rule
 
@@ -83,9 +86,9 @@ Visible in final HTML:
 - title
 - compact chips under title
 - panoramic industry-plus-business flowchart
+- compact product-formation/process ribbon when useful
 - commercial control-point cards
 - bottleneck heat table
-- compact process-flow ribbon
 - small legend for arrow styles and bottleneck colors
 
 Do not render directly:
@@ -113,8 +116,25 @@ For Chinese outputs, visible text should be Chinese. Keep English only for unavo
 Avoid visible hero paragraphs. The top area should usually contain only:
 
 - title
-- 4-6 chips
-- optional legend
+- optional evidence-cutoff text if the user wants it visible
+- 3-6 compact chips or tags
+
+Do not render a paragraph under the title that explains every route, time window, or constraint thesis. Put route details in chips, legends, graph labels, or control cards instead.
+
+## Graph Legibility And Edge Routing
+
+Treat line overlap as a rendering error, not a minor style issue.
+
+Rules for the panoramic graph:
+
+- arrows and connector lines must not pass through node titles, company names, company badges, tickers, metric chips, or bottleneck labels
+- connect arrows to node borders or explicit anchor points, not through the center of text blocks
+- reserve horizontal and vertical gutters between lanes for edges
+- route edges behind nodes only when they remain visually separated from text; otherwise route around nodes
+- keep edge labels outside node bodies and away from company badges
+- use orthogonal, elbow, curved, or bundled edges when straight lines would cross text
+- use z-index/layering so node panels, text, and badges sit above decorative lines, but do not rely on layering to hide bad routing
+- when the graph becomes too dense, split into a main overview plus a focused drilldown instead of allowing unreadable crossings
 
 ## Graph-First Markdown Production Order
 
@@ -123,11 +143,11 @@ Use this order in the Markdown production brief when the user mainly wants a cha
 1. title
 2. render brief
 3. panoramic industry-plus-business flowchart
-4. node production data
-5. edge render data
-6. commercial control-point cards
-7. bottleneck heat table
-8. compact process ribbon if useful
+4. compact product-formation/process ribbon if useful
+5. node production data
+6. edge render data
+7. commercial control-point cards
+8. bottleneck heat table
 9. non-render evidence ledger
 
 ## Commercial Control-Point Map
@@ -182,6 +202,8 @@ Default swimlanes:
 6. Bottom data strip: market size, share, lead time, capacity, growth, adoption, or bottleneck metrics.
 
 Swimlanes are layout metadata. Render them as graph backgrounds, group labels, or lane headers inside the main atlas. Do not render a separate layer-card grid or standalone `产业分层节点` section unless the user explicitly asks for a technical appendix.
+
+Company labels inside nodes should use compact logo/wordmark plus ticker badges for listed companies whenever badge data is available. Keep badges below or beside the node label, never as loose comma-separated text that forces long line wrapping.
 
 ## What To Merge
 
@@ -247,11 +269,11 @@ Use this order for full Markdown production briefs. This is not permission to re
 
 1. title and render brief
 2. panoramic industry-plus-business flowchart
-3. node production data
-4. edge render data
-5. commercial control-point cards
-6. bottleneck ranking and heatmap
-7. compact process-flow ribbon if useful
+3. compact product-formation/process ribbon if useful
+4. node production data
+5. edge render data
+6. commercial control-point cards
+7. bottleneck ranking and heatmap
 8. evidence ledger
 9. thesis breakers and update triggers
 

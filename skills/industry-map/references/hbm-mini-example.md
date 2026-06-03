@@ -39,7 +39,7 @@ Ask the user to confirm or adjust before final atlas generation.
 
 ## HTML Renderer Allowlist
 
-Render only: Main Title, Panoramic Industry + Business Flowchart, Commercial Control-Point Cards, Bottleneck Heat Table, Compact Process-Flow Ribbon, Small Legend.
+Render only: Main Title, Panoramic Industry + Business Flowchart, Compact Process-Flow Ribbon, Commercial Control-Point Cards, Bottleneck Heat Table, Small Legend.
 
 Do not render: Scope Confirmation Gate, Node Production Data, Edge Render Data, Company Badge Data, Evidence Ledger, raw JSON, source URLs, raw Markdown backup, standalone layer inventory.
 
@@ -66,6 +66,23 @@ flowchart TB
   BOND --> STACK
   BASE --> STACK
   STACK --> COWOS --> GPU
+```
+
+Renderer must route arrows around text and badges; arrows must not cover node labels, company labels, tickers, metrics, or bottleneck tags.
+
+## Visible Block: Compact Process-Flow Ribbon
+
+Place this directly below the panoramic graph.
+
+```mermaid
+flowchart LR
+  DRAM["DRAM die"]
+  TSV["TSV / bonding"]
+  STACK["HBM stack"]
+  PKG["CoWoS / 2.5D package"]
+  PLATFORM["GPU / ASIC validation"]
+
+  DRAM --> TSV --> STACK --> PKG --> PLATFORM
 ```
 
 ## Non-Render Data: Node Production Data
