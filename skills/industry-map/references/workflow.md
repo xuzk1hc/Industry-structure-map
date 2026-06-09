@@ -13,6 +13,7 @@ Minimum scope fields:
 - geography: global by default; add China, US, Japan, Korea, Europe, or Taiwan if relevant
 - horizon: sector-appropriate bottleneck outlook; use 12-24 months as a starting point, then adjust for capacity cycle, qualification cycle, or product iteration speed
 - output depth: short map, full Markdown report, deep dive, or company drilldown
+- deliverables: Markdown plus HTML by default; Markdown-only or HTML-only only when explicitly requested
 - mode: interactive by default for full or deep-dive visual reports; one-pass only when the user asks to skip confirmation
 
 If the user gives only a sector name, use:
@@ -20,6 +21,7 @@ If the user gives only a sector name, use:
 - geography: global
 - horizon: sector-appropriate outlook, usually starting from current state plus 12-24 months
 - output: full Markdown atlas
+- delivery: reusable Markdown source plus rendered HTML consulting infographic
 - evidence: current public sources where available
 
 ## 2. Product Definition
@@ -152,6 +154,8 @@ Main diagram rule:
 
 When the report needs to resemble a long-form infographic, read [visual-report-pattern.md](visual-report-pattern.md).
 
+Before HTML rendering, prepare the natural-language visual direction using [render-style-brief.md](render-style-brief.md). Select or adapt one profile from [style-profiles.md](style-profiles.md), and use [visual-reference-library.md](visual-reference-library.md) when references or assets are available.
+
 ## 7. Company-Role Mapping
 
 For each important node, identify:
@@ -237,9 +241,9 @@ Grade source quality with Evidence Tier 1-6 from [evidence-standard.md](evidence
 
 If live source access is unavailable, follow the degradation rules in [evidence-standard.md](evidence-standard.md): set evidence cutoff to `not refreshed`, treat source freshness as stale, and do not introduce new confirmed supplier/customer claims.
 
-## 10. Report Assembly
+## 10. Markdown Source Assembly
 
-The final Markdown production brief should include:
+The reusable Markdown source should include:
 
 - executive summary
 - scope and assumptions
@@ -254,7 +258,41 @@ The final Markdown production brief should include:
 - evidence ledger
 - thesis breakers and update triggers
 - appendix for unresolved questions
+- non-render Render Style Brief
+- HTML visible-section allowlist and denylist
+- reference-asset and anti-reference notes when available
 
-The final HTML must not render every Markdown section. It must follow the visible-section allowlist in [report-template.md](report-template.md).
+The Markdown source is both a research record and a rendering/re-creation brief. It must remain useful if the user sends it to another AI for a different visual interpretation.
 
 Use [report-template.md](report-template.md) for the exact scaffold.
+
+## 11. Creative HTML Rendering
+
+Render the completed Markdown source into an HTML consulting infographic by default.
+
+The renderer:
+
+- must follow the visible-section allowlist and denylist
+- must follow the non-render Render Style Brief
+- may freely choose SVG, Canvas, HTML/CSS, typography, node geometry, layout geometry, restrained motion, and responsive implementation
+- must preserve relationship direction, route meaning, bottleneck meaning, company listing status, and evidence-bound claims
+- must not mechanically render every Markdown heading or table
+- must not rely on a mandatory fixed template or JSON schema
+
+Default file pair:
+
+- `[topic]_industry-map.md`
+- `[topic]_industry-map.html`
+
+## 12. Render Review And Delivery
+
+Inspect the actual HTML before delivery using [render-quality-rubric.md](render-quality-rubric.md).
+
+When the runtime supports it:
+
+- open the HTML in a browser
+- inspect desktop and mobile widths
+- check text fit, line routing, section order, badges, and forbidden-content leakage
+- revise until automatic failure conditions are cleared
+
+Deliver both the Markdown source and HTML report unless the user explicitly requests one format only.

@@ -1,6 +1,6 @@
 # Visual Report Pattern
 
-Use this file when the user wants the final Markdown to be rendered as a long-form HTML consulting infographic.
+Use this file when rendering the Markdown source as a long-form HTML consulting infographic.
 
 ## Design Goal
 
@@ -11,6 +11,7 @@ The output should feel like a structured industry research poster and a render-r
 - precise enough for serious industry analysis
 - compatible with a renderer that can consume Markdown graph specs and production data
 - easy for another AI to transform into a styled visual report
+- visually creative within explicit hard restrictions
 
 ## Core Layout
 
@@ -31,6 +32,25 @@ Use one primary visual block plus supporting render data:
    - Only include enough process flow for the renderer to understand the sequence.
    - Do not let process detail dominate the main graph.
    - When included, place it directly below the panoramic industry-plus-business flowchart.
+
+## Creative Rendering Boundary
+
+Do not require one fixed HTML template or mandatory JSON schema.
+
+Use the natural-language Render Style Brief to define:
+
+- visual character
+- industry-specific visual signals
+- information hierarchy
+- color and typography direction
+- graph language
+- creative freedom
+- hard restrictions
+- reference assets and anti-references
+
+The renderer may freely choose SVG, Canvas, HTML/CSS, or a mixed implementation. It must preserve relationship meaning, visible-section rules, company data accuracy, and graph legibility.
+
+Read [render-style-brief.md](render-style-brief.md), [style-profiles.md](style-profiles.md), and [visual-reference-library.md](visual-reference-library.md) before rendering.
 
 ## Preferred HTML Rendering Method
 
@@ -67,9 +87,9 @@ Avoid hero paragraphs. The top title area should not include a long thesis sente
 
 ## Primary Output Rule
 
-The main deliverable is the graph, not the prose.
+The default delivery is the reusable Markdown source plus the rendered HTML report. In both artifacts, the graph remains more important than prose.
 
-For each output, make sure another AI can render the graph without guessing:
+For each output, make sure the current renderer and any later AI can render the graph without guessing:
 
 - node labels are short and stable
 - every node has a type, layer, leader companies, bottleneck status, and evidence hooks
@@ -79,7 +99,7 @@ For each output, make sure another AI can render the graph without guessing:
 
 ## Visible Versus Non-Render Content
 
-The Markdown file is a production brief for the next AI.
+The Markdown file is the reusable source for the current HTML render and for any later AI re-creation.
 
 Visible in final HTML:
 
@@ -290,3 +310,13 @@ Use this order for full Markdown production briefs. This is not permission to re
 - For complex maps, show merge/split relationships explicitly. Do not imply that peer companies are sequential steps.
 - Use Evidence Tier 1-6 in source ledgers; do not use legacy letter source labels.
 - Treat visible-section denylist violations as render failures, not style preferences.
+
+## Render Review
+
+Do not deliver the HTML immediately after writing it.
+
+- inspect the rendered page, not only source code
+- review desktop and mobile widths when possible
+- check section order, text fit, line routing, company badges, and forbidden-content leakage
+- score the result with [render-quality-rubric.md](render-quality-rubric.md)
+- revise until no automatic failure condition remains

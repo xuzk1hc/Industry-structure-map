@@ -24,7 +24,7 @@ If the user requests direct generation, skip the confirmation pause but include 
 
 Examples:
 
-- "直接生成完整 MD"
+- "直接生成完整 MD + HTML"
 - "不要中途确认"
 - "one-pass"
 - "batch mode"
@@ -36,3 +36,6 @@ Examples:
 - Use [io-contract.md](io-contract.md) for input fields, output fields, and examples.
 - Preserve the distinction between visible report blocks and non-render production data.
 - Do not show raw node/edge/evidence tables in the final HTML unless the user explicitly asks for a technical appendix.
+- Produce the Markdown source and rendered HTML report by default.
+- Use the natural-language style brief and quality rubric without forcing a fixed template or mandatory JSON schema.
+- Inspect the rendered HTML before delivery when the runtime supports it.

@@ -1,17 +1,18 @@
 ---
 name: industry-map
-description: Use when the user wants a structured industry-chain atlas for a product or sector such as HBM, EV batteries, semiconductors, robotics, energy storage, or AI infrastructure, including product decomposition, supplier/customer/competitor mapping, bottleneck ranking, evidence cross-checking from filings/reports/news, and Markdown output designed for HTML consulting-report rendering.
+description: Use when the user wants a structured industry-chain atlas for a product or sector such as HBM, EV batteries, semiconductors, robotics, energy storage, or AI infrastructure, including product decomposition, supplier/customer/competitor mapping, bottleneck ranking, evidence cross-checking from filings/reports/news, and dual delivery as a reusable Markdown source plus a rendered HTML consulting-report infographic.
 ---
 
 # Industry Map
 
-Use this skill when the user wants to analyze an industry chain, product stack, or manufacturing ecosystem and turn it into a structured Markdown graph specification that another AI can render into a consulting-style HTML infographic.
+Use this skill when the user wants to analyze an industry chain, product stack, or manufacturing ecosystem and turn it into both a reusable Markdown graph specification and a directly usable consulting-style HTML infographic.
 
 The skill is designed for outputs such as:
 
 - industry maps for HBM, EV batteries, optical modules, humanoid robots, cooling, power equipment, materials, or semiconductor equipment
 - supplier, customer, competitor, and bottleneck analysis by product/component/process node
 - graph-first Markdown reports that another AI or renderer can convert into styled HTML industry and commercial maps
+- directly rendered HTML consulting-report infographics based on the Markdown source
 - evidence-driven supply-chain work using filings, earnings calls, research reports, and industry news
 
 ## Core Promise
@@ -25,7 +26,7 @@ Instead, build a product-aware atlas:
 3. map how each node feeds the next node and how the pieces combine into the final product
 4. label leading global companies, regional challengers, downstream customers, and competitors at every important node
 5. rank bottlenecks by concentration, substitutability, qualification cycle, capacity ramp, technical difficulty, and evidence strength
-6. produce a graph-first Markdown artifact that is easy to render into an HTML consulting report
+6. produce a graph-first Markdown source and render it into an HTML consulting report while preserving the source for later re-creation
 
 ## When To Read References
 
@@ -33,10 +34,14 @@ Instead, build a product-aware atlas:
 - For Mermaid diagrams, node fields, and table schemas, read [references/graph-schema.md](references/graph-schema.md).
 - For long-form consulting infographic layouts that merge product structure and business relationships, read [references/visual-report-pattern.md](references/visual-report-pattern.md).
 - For evidence grading, source hierarchy, and cross-check rules, read [references/evidence-standard.md](references/evidence-standard.md).
-- For the final Markdown output scaffold, read [references/report-template.md](references/report-template.md).
+- For the Markdown source and paired HTML delivery scaffold, read [references/report-template.md](references/report-template.md).
 - For portable input/output fields, examples, and agent-neutral contract details, read [references/io-contract.md](references/io-contract.md).
 - For Claude Code-style confirmation behavior and portability notes, read [references/claude-code-adapter.md](references/claude-code-adapter.md).
 - For a compact end-to-end example, read [references/hbm-mini-example.md](references/hbm-mini-example.md).
+- For natural-language visual direction and creative-freedom boundaries, read [references/render-style-brief.md](references/render-style-brief.md).
+- For reusable visual directions, read [references/style-profiles.md](references/style-profiles.md).
+- For reference-image, asset, and anti-pattern guidance, read [references/visual-reference-library.md](references/visual-reference-library.md).
+- For HTML review and delivery criteria, read [references/render-quality-rubric.md](references/render-quality-rubric.md).
 
 ## Required Workflow
 
@@ -51,13 +56,18 @@ Use this order unless the user explicitly requests a narrower task:
 6. Company-role mapping: for each node, name global leaders, important regional players, downstream customers, competitors, and likely substitutes.
 7. Bottleneck ranking: identify where demand growth would break the chain first; add optional quantitative signals only when data is available.
 8. Evidence cross-check: validate key claims with company evidence, research/report evidence, and industry-news evidence using Evidence Tier 1-6.
-9. Markdown assembly: output a graph-first Markdown file whose primary artifact is the industry-plus-business flowchart; tables, cards, bottleneck notes, and evidence are supporting render data.
+9. Markdown assembly: output a graph-first Markdown source whose primary artifact is the industry-plus-business flowchart; tables, cards, bottleneck notes, evidence, and the non-render style brief support rendering and future re-creation.
+10. Creative HTML rendering: render the Markdown source into a self-contained or locally usable HTML consulting infographic. Follow the style brief and visible-section allowlist while retaining freedom over SVG, Canvas, HTML/CSS, layout geometry, typography, and restrained motion.
+11. Render quality gate: inspect the actual HTML at practical desktop and mobile widths when possible, score it with [references/render-quality-rubric.md](references/render-quality-rubric.md), and revise until no automatic failure condition remains.
 
 ## Hard Rules
 
 - Never output only a simple upstream/midstream/downstream table.
 - For visual report requests, do not make company-only maps. Product/component/process nodes must be the primary structure; companies are labels, role cards, or relationship overlays.
 - The Markdown artifact is an instruction/specification for the next renderer, not the visible report body.
+- Default full delivery includes both the Markdown source and the rendered HTML report. Do not stop after Markdown unless the user explicitly requests Markdown only or the runtime cannot create HTML.
+- The Markdown source is the editable research and re-creation artifact; the HTML report is the immediately usable output. Keep their roles distinct.
+- Do not force a fixed HTML template, fixed component library, or mandatory JSON schema. Use the natural-language Render Style Brief, reference materials, hard restrictions, and quality rubric to bound creative rendering.
 - Clearly mark visible sections and non-render sections. The renderer must not place Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs into the final HTML.
 - Node Production Data, Edge Render Data, and other production tables are inputs for image/HTML generation only. They must not appear as raw tables in the final rendered HTML unless explicitly transformed into visual nodes, arrows, cards, or hidden QA metadata.
 - Renderers must use a visible-section allowlist, not all Markdown headings. Do not create final HTML sections from Scope Confirmation Gate, Node Production Data, Edge Render Data, Evidence Ledger, Renderer Notes, JSON blocks, raw Markdown backups, source URL lists, observation tables, or other machine-readable sections.
@@ -80,12 +90,16 @@ Use this order unless the user explicitly requests a narrower task:
 - Every major node must have an input, output, role in final-product formation, company leaders, claim state, and source freshness.
 - Every major bottleneck call must include at least one falsification test.
 - If live source access is unavailable, state that source verification is incomplete and mark claims as needing refresh.
+- Do not deliver HTML without inspecting the rendered result when the runtime supports browser or screenshot review. Resolve automatic failure conditions before delivery.
 
 ## Default Output
 
-For a full request, produce a graph-first Markdown artifact using the template in [references/report-template.md](references/report-template.md).
+For a full request, produce two coordinated artifacts:
 
-For a short answer, still include:
+1. `[topic]_industry-map.md`: the graph-first Markdown source using [references/report-template.md](references/report-template.md), including non-render research, evidence, company-badge, renderer, and style-brief data.
+2. `[topic]_industry-map.html`: the rendered consulting-report infographic based on that Markdown source, containing only allowed visible blocks.
+
+For a short answer, still include or produce:
 
 - one product/system definition
 - one industry-plus-business flowchart
@@ -94,6 +108,8 @@ For a short answer, still include:
 - top 3 bottlenecks
 - strongest evidence and weakest assumption
 - what to verify next
+
+If the user explicitly requests `Markdown only`, skip HTML. If the user explicitly requests `HTML only`, still keep enough internal structure to preserve the content contract, but deliver only the requested HTML.
 
 ## Source Category Discipline
 
@@ -114,7 +130,7 @@ Use current, source-backed information whenever possible. For public companies, 
 
 ## Final Artifact Bias
 
-The final artifact should behave like a renderable graph specification, not a long memo or stock-picking note.
+The Markdown source should behave like a renderable graph specification, not a long memo or stock-picking note. The paired HTML should behave like a polished consulting infographic, not a line-by-line Markdown rendering.
 
 It may mention listed companies, but the primary object is the industry system:
 
@@ -134,3 +150,10 @@ Default Markdown production structure. This is not the final HTML render order:
 6. non-render node production table
 7. non-render edge render table
 8. non-render evidence ledger
+
+Default delivery sequence:
+
+1. complete and save the Markdown source
+2. render the HTML report from the Markdown source
+3. inspect and revise the HTML using the quality rubric
+4. deliver both files and briefly report remaining limitations

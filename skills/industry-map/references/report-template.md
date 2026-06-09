@@ -1,11 +1,11 @@
-# Graph-First Markdown Template
+# Graph-First Markdown And HTML Delivery Template
 
-Use this template when the user wants a Markdown file that another AI can render into an HTML consulting-style industry and business map.
+Use this template to create the reusable Markdown source before rendering the paired HTML consulting-style industry and business map.
 
-The primary deliverable is the graph. Text, tables, and evidence exist to support rendering and source discipline.
+The Markdown source preserves research, graph logic, evidence, and re-creation instructions. The paired HTML is the immediately usable visual report.
 
 ````markdown
-# [Industry/Product] 产业 + 商业图谱渲染指令
+# [Industry/Product] 产业 + 商业图谱源文件
 
 ## Render Brief
 
@@ -24,6 +24,26 @@ The primary deliverable is the graph. Text, tables, and evidence exist to suppor
 **Source freshness:** [refreshed / not refreshed / stale / needs refresh]
 
 **Mode:** [interactive with scope confirmation / one-pass with stated assumptions]
+
+**Default deliverables:** `[topic]_industry-map.md` and `[topic]_industry-map.html`
+
+## Non-Render: Render Style Brief
+
+Use the structure in `render-style-brief.md`.
+
+| Field | Direction |
+|---|---|
+| Style profile | [Named profile or custom profile] |
+| Visual character | [3-6 adjectives] |
+| Domain signals | [Industry-specific visual cues] |
+| Information hierarchy | [Ordered visible-block hierarchy] |
+| Color direction | [Dominant, supporting, emphasis, bottleneck, uncertainty colors] |
+| Typography direction | [Display/body character and density] |
+| Graph language | [Node, arrow, route, bottleneck, badge, and lane behavior] |
+| Creative freedom | [What the renderer may reinterpret] |
+| Hard restrictions | [Non-negotiable rendering rules] |
+| Reference assets | [Attached or local references] |
+| Anti-references | [Patterns and failures to avoid] |
 
 ## Visible HTML Requirements
 
@@ -64,6 +84,7 @@ Forbidden in final HTML:
 
 - Scope Confirmation Gate
 - Render Brief instructions
+- Render Style Brief
 - Node Production Data table
 - Edge Render Data table
 - Company Badge Data table
@@ -201,6 +222,9 @@ Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not r
 
 ## Renderer Notes
 
+- Render a paired HTML report after completing this Markdown source unless the user explicitly requests Markdown only.
+- Treat the Render Style Brief as design direction, not visible report copy.
+- Retain creative freedom over SVG, Canvas, HTML/CSS, typography, layout geometry, and restrained motion. Do not require a fixed template or mandatory JSON schema.
 - Treat the Mermaid graph as a source spec or layout brief. Use custom SVG/HTML when the final long infographic needs precise styling.
 - Use node production data for visual node/card contents and styling; do not display the node table itself.
 - Use edge render data for line styles and labels; do not display the edge table itself.
@@ -213,4 +237,6 @@ Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not r
 - Preserve route IDs and route colors when technical routes diverge.
 - Treat missing quantitative indicators as `unknown`; do not invent numbers.
 - Build final HTML navigation only from the visible-section allowlist.
+- Inspect the actual rendered HTML and score it with `render-quality-rubric.md`; revise until no automatic failure condition remains.
+- Deliver both the Markdown source and rendered HTML report by default.
 ````

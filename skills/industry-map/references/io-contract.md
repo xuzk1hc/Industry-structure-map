@@ -20,7 +20,10 @@ Optional:
 | depth | enum | full | `short`, `full`, or `deep_dive` |
 | target_language | string | user language | Visible report language |
 | output_mode | enum | interactive | `interactive` pauses at the scope confirmation gate; `one_pass` states assumptions and continues |
+| deliverables | enum | markdown_and_html | `markdown_and_html`, `markdown_only`, or `html_only` |
 | render_style | string | consulting long infographic | Visual style instruction for final HTML rendering |
+| style_profile | string | domain-appropriate profile | Named profile from `style-profiles.md` or a custom natural-language profile |
+| reference_assets | list | none | Attached screenshots, HTML reports, logos, icons, or other visual references |
 | compare_routes | enum | auto | `true`, `false`, or `auto`; whether to identify competing technical routes when material |
 | include_quant_signals | boolean | true | Include supplier concentration, HHI only when share data supports it, utilization, ASP trend, qualification cycle, or lead-time signals when sourced data exists |
 | evidence_refresh | string | latest practical source refresh | Source recency requirement |
@@ -37,11 +40,19 @@ Interactive mode first output:
 | Technology routes | Route IDs and branch assumptions if routes matter |
 | Confirmation request | Ask user to confirm or adjust before final atlas |
 
-Final Markdown output:
+Default final delivery:
+
+| Artifact | Purpose |
+|---|---|
+| `[topic]_industry-map.md` | Editable research source, graph specification, style brief, evidence record, and re-creation instructions |
+| `[topic]_industry-map.html` | Directly usable rendered consulting-report infographic based on the Markdown source |
+
+Final Markdown source sections:
 
 | Section | Render status |
 |---|---|
 | Render Brief | Non-render instruction |
+| Render Style Brief | Non-render natural-language visual direction and creative-freedom boundary |
 | Visible HTML Requirements | Non-render instruction |
 | Panoramic Industry + Business Flowchart | Visible, transformed into SVG/HTML graph |
 | Compact Process-Flow Ribbon | Visible if useful; place directly below the panoramic graph |
@@ -52,6 +63,14 @@ Final Markdown output:
 | Company Badge Data | Non-render production data for logo/ticker badges |
 | Evidence Ledger | Non-render source QA |
 | Renderer Notes | Non-render instruction |
+
+Final HTML requirements:
+
+- render only the visible allowlist
+- follow the Render Style Brief without using it as visible copy
+- preserve relationship direction and evidence-bound meaning
+- use creative rendering rather than mechanically converting all Markdown headings
+- pass the automatic failure checks in `render-quality-rubric.md`
 
 Final HTML allowlist:
 
@@ -70,6 +89,7 @@ Final HTML denylist:
 - Company Badge Data
 - Evidence Ledger
 - Renderer Notes
+- Render Style Brief
 - raw JSON or machine-readable blocks
 - raw Markdown backup
 - source URL lists
@@ -115,6 +135,8 @@ This skill can:
 - rank bottlenecks with evidence-bound qualitative and optional quantitative signals
 - compare competing technology routes when they materially affect the chain
 - degrade gracefully when live source access is unavailable
+- deliver both a reusable Markdown source and a directly usable HTML consulting infographic
+- stabilize creative HTML rendering through natural-language style profiles, visual references, hard restrictions, and a quality rubric without forcing a fixed template
 
 ## Examples
 
@@ -129,6 +151,8 @@ depth: full
 output_mode: interactive
 compare_routes: true
 include_quant_signals: true
+deliverables: markdown_and_html
+style_profile: Chip-Tech Blue
 ```
 
 EV battery:
@@ -140,6 +164,8 @@ geography: China and global
 depth: full
 output_mode: interactive
 compare_routes: true
+deliverables: markdown_and_html
+style_profile: Industrial Engineering
 ```
 
 Optical modules:
@@ -151,4 +177,6 @@ geography: global
 depth: deep_dive
 output_mode: interactive
 compare_routes: true
+deliverables: markdown_and_html
+style_profile: Chip-Tech Blue
 ```

@@ -2,7 +2,7 @@
 
 A reusable skill package for building graph-first industry-chain and business-control maps.
 
-The skill turns a product or sector such as HBM, EV batteries, optical modules, rockets, robotics, semiconductor equipment, energy storage, or AI infrastructure into a Markdown rendering brief that another AI or renderer can convert into a consulting-style HTML infographic.
+The skill turns a product or sector such as HBM, EV batteries, optical modules, rockets, robotics, semiconductor equipment, energy storage, or AI infrastructure into two coordinated outputs: a reusable Markdown research/rendering source and a directly usable HTML consulting infographic.
 
 It is designed for users who need a detailed industry plus commercial graph, not a generic upstream/midstream/downstream summary.
 
@@ -10,9 +10,10 @@ It is designed for users who need a detailed industry plus commercial graph, not
 
 - Decomposes a final product into modules, subcomponents, materials, processes, equipment, integration, testing, and downstream demand.
 - Maps suppliers, customers, competitors, substitutes, route alternatives, commercial control points, and bottlenecks.
-- Produces a graph-first Markdown brief for HTML rendering, not a prose-first research memo.
+- Produces a graph-first Markdown source plus a rendered HTML consulting report by default.
 - Separates visible report blocks from non-render production data.
 - Enforces evidence tiers, claim-state labels, bottleneck heat labels, renderer allowlists, and company logo/ticker badge data.
+- Stabilizes creative rendering through natural-language style profiles, visual references, anti-patterns, and a quality rubric without forcing a fixed HTML template.
 
 ## When To Use It
 
@@ -24,7 +25,7 @@ Use this skill when you want:
 - commercial control-point cards
 - bottleneck ranking and heat levels
 - source-backed claims with evidence quality labels
-- a Markdown instruction file that can guide another AI to render a long-form HTML consulting infographic
+- an immediately usable HTML consulting infographic plus a Markdown source that can be sent to another AI for re-rendering or further creation
 
 Typical targets include:
 
@@ -36,9 +37,16 @@ Typical targets include:
 - semiconductor equipment / materials / fabs
 - AI data centers / cooling / power infrastructure
 
-## What It Produces
+## Default Deliverables
 
-The expected output is a Markdown rendering brief. The final rendered HTML should look like a long-form consulting infographic or industry atlas.
+Every full run produces:
+
+| Artifact | Purpose |
+| --- | --- |
+| `[topic]_industry-map.md` | Editable research source, graph specification, evidence record, style brief, and re-creation instructions |
+| `[topic]_industry-map.html` | Directly usable rendered consulting-report infographic |
+
+The HTML should look intentionally designed rather than mechanically converted from Markdown. The renderer retains freedom over SVG, Canvas, HTML/CSS, typography, layout geometry, and restrained motion.
 
 Visible report blocks normally include:
 
@@ -51,6 +59,7 @@ Visible report blocks normally include:
 
 Non-render production data may also be included in the Markdown brief, but it must not be shown directly in the final HTML:
 
+- Render Style Brief
 - Scope Confirmation Gate
 - Node Production Data
 - Edge Render Data
@@ -67,6 +76,21 @@ The final HTML renderer must use a visible-section allowlist.
 Do not render every Markdown heading into the report. In particular, do not create visible HTML sections for production-only blocks such as `Node Production Data`, `Edge Render Data`, `Evidence Ledger`, `Renderer Notes`, source lists, JSON blocks, or standalone layer inventories.
 
 Layer or swimlane metadata is only layout metadata. It should become background lanes, grouping labels, or graph structure inside the main map. It should not appear as a standalone section such as `产业分层节点`.
+
+## Controlled Creative Rendering
+
+The skill does not require a fixed HTML template or mandatory JSON schema.
+
+Instead, rendering quality is bounded by:
+
+- a natural-language Render Style Brief
+- reusable style profiles
+- visual-reference and asset guidance
+- explicit anti-patterns
+- hard visible-section and legibility restrictions
+- a scored render-quality rubric and automatic failure conditions
+
+This preserves differences between AI renderers while establishing a consistent quality floor.
 
 ## Why It Is Different
 
@@ -88,7 +112,9 @@ Layer or swimlane metadata is only layout metadata. It should become background 
 7. Map company roles: leaders, challengers, customers, competitors, and substitutes.
 8. Rank bottlenecks with evidence-bound quantitative signals when available.
 9. Cross-check important claims with filings, reports, earnings materials, research, and industry news.
-10. Assemble a Markdown brief that tells the next AI or renderer exactly what to show and what not to show.
+10. Assemble the reusable Markdown source, including the non-render Render Style Brief.
+11. Render the Markdown source into an HTML consulting infographic with creative freedom inside the hard restrictions.
+12. Inspect and revise the actual HTML using the render-quality rubric before delivering both files.
 
 ## Output Safeguards
 
@@ -132,15 +158,20 @@ Evidence quality is separate from bottleneck heat. A node can be hot but weakly 
 | `skills/industry-map/references/io-contract.md` | Portable input and output contract |
 | `skills/industry-map/references/claude-code-adapter.md` | Claude Code confirmation behavior and portability notes |
 | `skills/industry-map/references/hbm-mini-example.md` | Compact example using HBM |
+| `skills/industry-map/references/render-style-brief.md` | Natural-language visual direction and creative-freedom boundary |
+| `skills/industry-map/references/style-profiles.md` | Reusable visual-style profiles |
+| `skills/industry-map/references/visual-reference-library.md` | Reference-image, asset, and anti-pattern guidance |
+| `skills/industry-map/references/render-quality-rubric.md` | HTML scoring and automatic failure conditions |
 
 ## Quick Start Prompts
 
 Use the skill for HBM:
 
 ```text
-Use $industry-map to build a graph-first Markdown atlas for HBM3E/HBM4.
+Use $industry-map to build an HBM3E/HBM4 industry map.
 Use global scope, a 12-24 month bottleneck outlook, Chinese visible labels, and interactive scope confirmation.
-The final Markdown should guide another AI to render a blue chip-tech style HTML long infographic.
+Deliver both the reusable Markdown source and a rendered HTML consulting infographic.
+Use the Chip-Tech Blue style profile, retain creative freedom, and inspect the rendered HTML before delivery.
 ```
 
 Use the skill for rockets:
@@ -148,7 +179,8 @@ Use the skill for rockets:
 ```text
 Use $industry-map to map the launch vehicle industry.
 Focus on reusable rockets, propulsion, avionics/GNC, structures, ground test, launch sites, launch services, satellite-constellation demand, commercial control points, and bottlenecks.
-Use Chinese visible labels and include company logo/ticker badge data where possible.
+Use Chinese visible labels, the Industrial Engineering style profile, and company logo/ticker badge data where possible.
+Deliver both the Markdown source and the rendered HTML report.
 ```
 
 ## Installation

@@ -13,6 +13,8 @@ depth: full
 output_mode: interactive
 compare_routes: auto
 include_quant_signals: true
+deliverables: markdown_and_html
+style_profile: Chip-Tech Blue
 ```
 
 ## Scope Confirmation Gate
@@ -37,11 +39,28 @@ Ask the user to confirm or adjust before final atlas generation.
 
 **Mode:** interactive with scope confirmation.
 
+**Default deliverables:** `HBM_industry-map.md` and `HBM_industry-map.html`.
+
+## Non-Render: Render Style Brief
+
+| Field | Direction |
+|---|---|
+| Style profile | Chip-Tech Blue |
+| Visual character | 克制、精密、冷静、高信息密度 |
+| Domain signals | 晶圆、封装层、电路走线、高速数据流 |
+| Information hierarchy | 全景图 -> 产品形成流程 -> 商业控制点 -> 瓶颈排名 |
+| Color direction | 深蓝背景；冰蓝/青色主链；橙色替代路线；红色关键瓶颈 |
+| Graph language | 实线产品形成；虚线商业/认证/替代；logo + ticker badge |
+| Creative freedom | 节点形状、背景纹理、排版、SVG 表现和克制动效 |
+| Hard restrictions | 禁止长首屏解释、连线遮挡、生产数据泄漏和固定卡片墙 |
+| Reference assets | Use available official company logos or consistent fallback badges |
+| Anti-references | Generic SaaS dashboard, excessive glow, raw Markdown rendering |
+
 ## HTML Renderer Allowlist
 
 Render only: Main Title, Panoramic Industry + Business Flowchart, Compact Process-Flow Ribbon, Commercial Control-Point Cards, Bottleneck Heat Table, Small Legend.
 
-Do not render: Scope Confirmation Gate, Node Production Data, Edge Render Data, Company Badge Data, Evidence Ledger, raw JSON, source URLs, raw Markdown backup, standalone layer inventory.
+Do not render: Render Style Brief, Scope Confirmation Gate, Node Production Data, Edge Render Data, Company Badge Data, Evidence Ledger, raw JSON, source URLs, raw Markdown backup, standalone layer inventory.
 
 ## Visible Block: Panoramic Industry + Business Flowchart
 
@@ -127,3 +146,12 @@ flowchart LR
 |---|---|---|---|---|---|---|---|
 | E01 | Placeholder industry reporting to refresh | not refreshed | Tier 4 | stale | HBM stack supply as major bottleneck | no numeric method used | Replace with current filings, earnings calls, and industry reports |
 | E02 | Placeholder industry reporting to refresh | not refreshed | Tier 4 | stale | CoWoS / 2.5D packaging as major bottleneck | no numeric method used | Replace with current foundry and packaging evidence |
+
+## HTML Delivery And Review
+
+- Render `HBM_industry-map.html` from this Markdown source.
+- Retain creative freedom over SVG, HTML/CSS, typography, layout, and restrained motion.
+- Do not display the Render Style Brief or any non-render data section.
+- Inspect the actual HTML at desktop and mobile widths when possible.
+- Score it with `render-quality-rubric.md` and revise until no automatic failure condition remains.
+- Deliver both the Markdown source and HTML report.
