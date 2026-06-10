@@ -43,6 +43,9 @@ Include this non-render section in the Markdown source:
 ### Reference Assets
 [Attached images, local assets, or named references to study]
 
+### Optional External Design Libraries
+[Library, intended effect, reason, static/reduced-motion fallback, and license note]
+
 ### Anti-References
 [Visual patterns or prior failures to avoid]
 ```
@@ -56,6 +59,7 @@ Do not render the style brief as visible report content.
 - State what may vary so the renderer retains creative freedom.
 - State hard restrictions separately from preferences.
 - Treat reference images as design evidence, not as templates to copy literally.
+- Treat external design libraries as optional. Name the intended effect and fallback instead of broadly asking the renderer to use the entire library.
 - Prefer one coherent style direction over mixing several unrelated aesthetics.
 
 ## Example: Chip-Tech Blue
@@ -84,6 +88,9 @@ Chip-Tech Blue
 
 ### Creative Freedom
 允许自由设计节点形状、背景纹理、微动效、具体排版和 SVG 表现方式。
+
+### Optional External Design Libraries
+React Bits may be used for one restrained background or title-entry effect when React is appropriate. Keep a static fallback and disable or simplify motion for print.
 
 ### Hard Restrictions
 禁止首屏长解释；禁止连线遮挡文字和徽章；禁止渲染生产数据表；产品形成流程紧跟全景图。

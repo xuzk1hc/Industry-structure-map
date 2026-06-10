@@ -41,6 +41,7 @@ Instead, build a product-aware atlas:
 - For natural-language visual direction and creative-freedom boundaries, read [references/render-style-brief.md](references/render-style-brief.md).
 - For reusable visual directions, read [references/style-profiles.md](references/style-profiles.md).
 - For reference-image, asset, and anti-pattern guidance, read [references/visual-reference-library.md](references/visual-reference-library.md).
+- For optional interaction and motion libraries such as React Bits, read [references/external-design-libraries.md](references/external-design-libraries.md).
 - For HTML review and delivery criteria, read [references/render-quality-rubric.md](references/render-quality-rubric.md).
 
 ## Required Workflow
@@ -68,6 +69,7 @@ Use this order unless the user explicitly requests a narrower task:
 - Default full delivery includes both the Markdown source and the rendered HTML report. Do not stop after Markdown unless the user explicitly requests Markdown only or the runtime cannot create HTML.
 - The Markdown source is the editable research and re-creation artifact; the HTML report is the immediately usable output. Keep their roles distinct.
 - Do not force a fixed HTML template, fixed component library, or mandatory JSON schema. Use the natural-language Render Style Brief, reference materials, hard restrictions, and quality rubric to bound creative rendering.
+- Treat external design libraries as optional implementation aids. They must not control industry logic, graph structure, or edge routing, and they must preserve static readability, reduced-motion behavior, and license requirements.
 - Clearly mark visible sections and non-render sections. The renderer must not place Evidence Ledger, Renderer Notes, source URLs, or long reasoning paragraphs into the final HTML.
 - Node Production Data, Edge Render Data, and other production tables are inputs for image/HTML generation only. They must not appear as raw tables in the final rendered HTML unless explicitly transformed into visual nodes, arrows, cards, or hidden QA metadata.
 - Renderers must use a visible-section allowlist, not all Markdown headings. Do not create final HTML sections from Scope Confirmation Gate, Node Production Data, Edge Render Data, Evidence Ledger, Renderer Notes, JSON blocks, raw Markdown backups, source URL lists, observation tables, or other machine-readable sections.

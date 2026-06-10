@@ -15,6 +15,10 @@ compare_routes: auto
 include_quant_signals: true
 deliverables: markdown_and_html
 style_profile: Chip-Tech Blue
+external_design_libraries:
+  - library: React Bits
+    purpose: optional restrained title-entry or subtle background effect
+    fallback: static title and background
 ```
 
 ## Scope Confirmation Gate
@@ -54,6 +58,7 @@ Ask the user to confirm or adjust before final atlas generation.
 | Creative freedom | 节点形状、背景纹理、排版、SVG 表现和克制动效 |
 | Hard restrictions | 禁止长首屏解释、连线遮挡、生产数据泄漏和固定卡片墙 |
 | Reference assets | Use available official company logos or consistent fallback badges |
+| Optional external design libraries | React Bits only for one restrained title/background effect; static and print fallback required |
 | Anti-references | Generic SaaS dashboard, excessive glow, raw Markdown rendering |
 
 ## HTML Renderer Allowlist

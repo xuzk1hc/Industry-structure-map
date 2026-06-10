@@ -86,6 +86,7 @@ Instead, rendering quality is bounded by:
 - a natural-language Render Style Brief
 - reusable style profiles
 - visual-reference and asset guidance
+- optional external motion and interaction references such as React Bits
 - explicit anti-patterns
 - hard visible-section and legibility restrictions
 - a scored render-quality rubric and automatic failure conditions
@@ -161,6 +162,7 @@ Evidence quality is separate from bottleneck heat. A node can be hot but weakly 
 | `skills/industry-map/references/render-style-brief.md` | Natural-language visual direction and creative-freedom boundary |
 | `skills/industry-map/references/style-profiles.md` | Reusable visual-style profiles |
 | `skills/industry-map/references/visual-reference-library.md` | Reference-image, asset, and anti-pattern guidance |
+| `skills/industry-map/references/external-design-libraries.md` | Optional motion and interaction libraries, including React Bits usage rules |
 | `skills/industry-map/references/render-quality-rubric.md` | HTML scoring and automatic failure conditions |
 
 ## Quick Start Prompts

@@ -156,6 +156,8 @@ When the report needs to resemble a long-form infographic, read [visual-report-p
 
 Before HTML rendering, prepare the natural-language visual direction using [render-style-brief.md](render-style-brief.md). Select or adapt one profile from [style-profiles.md](style-profiles.md), and use [visual-reference-library.md](visual-reference-library.md) when references or assets are available.
 
+If optional motion or interaction would materially improve the selected style, read [external-design-libraries.md](external-design-libraries.md). Name the intended effect, fallback, and license note in the Render Style Brief before using an external library.
+
 ## 7. Company-Role Mapping
 
 For each important node, identify:
@@ -278,6 +280,7 @@ The renderer:
 - must preserve relationship direction, route meaning, bottleneck meaning, company listing status, and evidence-bound claims
 - must not mechanically render every Markdown heading or table
 - must not rely on a mandatory fixed template or JSON schema
+- may use optional external design libraries only when they preserve static readability, reduced-motion behavior, print/screenshot output, and license requirements
 
 Default file pair:
 

@@ -43,6 +43,7 @@ Use the structure in `render-style-brief.md`.
 | Creative freedom | [What the renderer may reinterpret] |
 | Hard restrictions | [Non-negotiable rendering rules] |
 | Reference assets | [Attached or local references] |
+| Optional external design libraries | [Library, intended effect, fallback, and license note] |
 | Anti-references | [Patterns and failures to avoid] |
 
 ## Visible HTML Requirements
@@ -225,6 +226,7 @@ Render this as a vertical top-to-bottom ranking with long, narrow rows. Do not r
 - Render a paired HTML report after completing this Markdown source unless the user explicitly requests Markdown only.
 - Treat the Render Style Brief as design direction, not visible report copy.
 - Retain creative freedom over SVG, Canvas, HTML/CSS, typography, layout geometry, and restrained motion. Do not require a fixed template or mandatory JSON schema.
+- Use optional external design libraries only when named in the Render Style Brief. Preserve static readability, reduced-motion behavior, print/screenshot output, and license requirements.
 - Treat the Mermaid graph as a source spec or layout brief. Use custom SVG/HTML when the final long infographic needs precise styling.
 - Use node production data for visual node/card contents and styling; do not display the node table itself.
 - Use edge render data for line styles and labels; do not display the edge table itself.

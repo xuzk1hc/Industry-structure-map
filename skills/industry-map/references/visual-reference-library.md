@@ -43,6 +43,16 @@ Asset rules:
 - avoid stock-like decorative images that do not explain the chain
 - do not let missing assets block rendering; degrade to consistent text badges
 
+## External Design Capability References
+
+External design libraries may be studied or selectively used for motion, interaction, backgrounds, and visual polish.
+
+- Use [external-design-libraries.md](external-design-libraries.md) for the approved-use guidance.
+- React Bits is an optional reference for restrained React-based text animation, backgrounds, card interactions, and metric reveals.
+- External libraries must not determine the graph structure, node placement, edge routing, or industry relationships.
+- Prefer a lightweight static equivalent when the report does not otherwise need React.
+- Record the chosen library, effect, fallback, and license note in the non-render Render Style Brief.
+
 ## Anti-Pattern Library
 
 Treat these as explicit failures:

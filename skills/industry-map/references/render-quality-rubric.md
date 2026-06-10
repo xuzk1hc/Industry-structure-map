@@ -30,6 +30,8 @@ The HTML is not deliverable if any of these occur:
 - a standalone layer inventory such as `产业分层节点` is rendered
 - company tickers or logos are invented
 - visible text overflows, overlaps, or is clipped at the target viewport
+- essential content is unreadable, missing, or geometrically unstable when animation is disabled
+- animation causes layout shifts that break the graph, print output, or static screenshots
 
 ## Required Review Pass
 
@@ -42,6 +44,13 @@ Before delivery:
 5. check that forbidden Markdown sections did not leak into HTML
 6. revise the HTML until automatic failure conditions are cleared
 7. report the final score and any remaining limitations outside the visible HTML
+
+When motion or interaction is used:
+
+- test the fully static initial or fallback state
+- test `prefers-reduced-motion` behavior when possible
+- confirm print and screenshot output does not depend on animation timing
+- confirm motion does not obscure graph relationships or continuously distract from reading
 
 ## Creative Review Questions
 

@@ -24,6 +24,7 @@ Optional:
 | render_style | string | consulting long infographic | Visual style instruction for final HTML rendering |
 | style_profile | string | domain-appropriate profile | Named profile from `style-profiles.md` or a custom natural-language profile |
 | reference_assets | list | none | Attached screenshots, HTML reports, logos, icons, or other visual references |
+| external_design_libraries | list | none | Optional libraries such as React Bits, including intended effect, fallback, and license note |
 | compare_routes | enum | auto | `true`, `false`, or `auto`; whether to identify competing technical routes when material |
 | include_quant_signals | boolean | true | Include supplier concentration, HHI only when share data supports it, utilization, ASP trend, qualification cycle, or lead-time signals when sourced data exists |
 | evidence_refresh | string | latest practical source refresh | Source recency requirement |
@@ -153,6 +154,10 @@ compare_routes: true
 include_quant_signals: true
 deliverables: markdown_and_html
 style_profile: Chip-Tech Blue
+external_design_libraries:
+  - library: React Bits
+    purpose: optional restrained title-entry or background effect
+    fallback: static title and background
 ```
 
 EV battery:
@@ -179,4 +184,8 @@ output_mode: interactive
 compare_routes: true
 deliverables: markdown_and_html
 style_profile: Chip-Tech Blue
+external_design_libraries:
+  - library: React Bits
+    purpose: optional subtle background or metric reveal
+    fallback: static background and metrics
 ```
